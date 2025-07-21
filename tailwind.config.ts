@@ -71,10 +71,19 @@ export default {
 			backgroundImage: {
 				'gradient-primary': 'var(--gradient-primary)',
 				'gradient-hero': 'var(--gradient-hero)',
+				'gradient-card': 'var(--gradient-card)',
+				'gradient-glass': 'var(--gradient-glass)',
+				'gradient-animate': 'var(--gradient-animate)',
 			},
 			boxShadow: {
 				'elegant': 'var(--shadow-elegant)',
 				'card': 'var(--shadow-card)',
+				'glass': 'var(--shadow-glass)',
+				'hover': 'var(--shadow-hover)',
+			},
+			backdropBlur: {
+				'glass': 'var(--blur-glass)',
+				'subtle': 'var(--blur-subtle)',
 			},
 			transitionTimingFunction: {
 				'smooth': 'var(--transition-smooth)',

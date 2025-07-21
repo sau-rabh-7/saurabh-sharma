@@ -7,15 +7,13 @@ const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "Projects", href: "#projects" },
-    { label: "Experience", href: "#experience" },
-    { label: "Education", href: "#education" },
-    { label: "Certifications", href: "#certifications" },
-    { label: "Papers", href: "#papers" },
-    { label: "Blog", href: "#blog" },
-    { label: "Contact", href: "#contact" },
+    { label: "Home", href: "/" },
+    { label: "Projects", href: "/projects" },
+    { label: "Experience", href: "/experience" },
+    { label: "Education", href: "/education" },
+    { label: "Certifications", href: "/certifications" },
+    { label: "Blog", href: "/blog" },
+    { label: "Contact", href: "/contact" },
   ];
 
   useEffect(() => {
@@ -34,9 +32,8 @@ const Navigation = () => {
     localStorage.setItem("theme", !isDark ? "dark" : "light");
   };
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    element?.scrollIntoView({ behavior: "smooth" });
+  const handleNavigation = (href: string) => {
+    window.location.href = href;
     setIsMobileMenuOpen(false);
   };
 
@@ -55,13 +52,13 @@ const Navigation = () => {
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
               {navItems.map((item) => (
-                <button
+                <a
                   key={item.label}
-                  onClick={() => scrollToSection(item.href)}
+                  href={item.href}
                   className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-smooth hover:bg-muted"
                 >
                   {item.label}
-                </button>
+                </a>
               ))}
             </div>
           </div>
@@ -97,13 +94,13 @@ const Navigation = () => {
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 bg-background border-b border-border">
             {navItems.map((item) => (
-              <button
+              <a
                 key={item.label}
-                onClick={() => scrollToSection(item.href)}
+                href={item.href}
                 className="text-foreground hover:text-primary block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-smooth hover:bg-muted"
               >
                 {item.label}
-              </button>
+              </a>
             ))}
           </div>
         </div>

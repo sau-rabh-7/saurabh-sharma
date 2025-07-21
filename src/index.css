@@ -45,11 +45,19 @@ All colors MUST be HSL.
 
     /* Portfolio-specific design tokens */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--primary) / 0.1), hsl(var(--accent) / 0.1));
-    --shadow-elegant: 0 10px 30px -10px hsl(var(--primary) / 0.2);
-    --shadow-card: 0 4px 20px -4px hsl(var(--foreground) / 0.1);
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary) / 0.05), hsl(var(--accent) / 0.05), hsl(var(--background)));
+    --gradient-card: linear-gradient(145deg, hsl(var(--card) / 0.6), hsl(var(--card) / 0.3));
+    --gradient-glass: linear-gradient(145deg, hsl(var(--background) / 0.1), hsl(var(--background) / 0.05));
+    --gradient-animate: linear-gradient(-45deg, hsl(var(--primary) / 0.1), hsl(var(--accent) / 0.1), hsl(var(--primary-glow) / 0.1), hsl(var(--accent) / 0.2));
+    --shadow-elegant: 0 20px 40px -12px hsl(var(--primary) / 0.25);
+    --shadow-card: 0 8px 32px -8px hsl(var(--foreground) / 0.1);
+    --shadow-glass: 0 8px 32px 0 hsl(var(--background) / 0.37);
+    --shadow-hover: 0 25px 50px -12px hsl(var(--primary) / 0.4);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-spring: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --blur-glass: blur(16px);
+    --blur-subtle: blur(8px);
 
     --sidebar-background: 0 0% 98%;
 
@@ -103,9 +111,14 @@ All colors MUST be HSL.
 
     /* Dark mode gradients and shadows */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--primary) / 0.15), hsl(var(--accent) / 0.15));
-    --shadow-elegant: 0 10px 30px -10px hsl(var(--primary) / 0.3);
-    --shadow-card: 0 4px 20px -4px hsl(0 0% 0% / 0.3);
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary) / 0.08), hsl(var(--accent) / 0.08), hsl(var(--background)));
+    --gradient-card: linear-gradient(145deg, hsl(var(--card) / 0.8), hsl(var(--card) / 0.4));
+    --gradient-glass: linear-gradient(145deg, hsl(var(--background) / 0.15), hsl(var(--background) / 0.05));
+    --gradient-animate: linear-gradient(-45deg, hsl(var(--primary) / 0.15), hsl(var(--accent) / 0.15), hsl(var(--primary-glow) / 0.15), hsl(var(--accent) / 0.25));
+    --shadow-elegant: 0 20px 40px -12px hsl(var(--primary) / 0.4);
+    --shadow-card: 0 8px 32px -8px hsl(0 0% 0% / 0.4);
+    --shadow-glass: 0 8px 32px 0 hsl(0 0% 0% / 0.37);
+    --shadow-hover: 0 25px 50px -12px hsl(var(--primary) / 0.6);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -124,5 +137,77 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply backdrop-blur-md bg-gradient-glass border border-white/10 shadow-glass;
+  }
+  
+  .glass-strong {
+    @apply backdrop-blur-xl bg-gradient-card border border-white/20 shadow-card;
+  }
+  
+  .hover-lift {
+    @apply transition-all duration-300 hover:transform hover:scale-105 hover:-translate-y-2 hover:shadow-hover;
+  }
+  
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-elegant hover:shadow-primary/25;
+  }
+  
+  .animate-gradient {
+    background: var(--gradient-animate);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-primary bg-clip-text text-transparent;
+  }
+}
+
+@layer utilities {
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+  
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
