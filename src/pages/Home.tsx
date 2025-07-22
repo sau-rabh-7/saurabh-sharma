@@ -1,10 +1,22 @@
 import Navigation from "@/components/Layout/Navigation";
 import Footer from "@/components/Sections/Footer";
-import { Github, Linkedin, Mail, Download, ExternalLink, Star, MapPin, GraduationCap, Calendar } from "lucide-react";
+import { Github, Linkedin, Mail, Download, ExternalLink, Star, MapPin, GraduationCap, Calendar, Award, Target, User, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { TypedText } from "@/components/ui/typed-text";
+import { useState, useEffect } from "react";
 
 const Home = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
+
+  const profileImages = [
+    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
+    "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face",
+    "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop&crop=face"
+  ];
+
   const contactLinks = [
     {
       icon: <Github className="w-5 h-5" />,
@@ -24,7 +36,7 @@ const Home = () => {
     {
       icon: <Download className="w-5 h-5" />,
       label: "Resume",
-      href: "/resume.pdf",
+      href: "https://drive.google.com/file/d/1234567890/view",
     },
   ];
 
@@ -48,19 +60,48 @@ const Home = () => {
       degree: "High School Diploma",
       institution: "Central High School",
       period: "2016-2018",
+      location: "New York, NY",
+      gpa: "3.8/4.0"
     },
     {
       degree: "Bachelor of Technology in Computer Science",
       institution: "Indian Institute of Technology",
       period: "2018-2022",
+      location: "Delhi, India",
+      gpa: "8.5/10.0"
     },
     {
       degree: "Master of Science in Computer Science",
       institution: "Stanford University",
       period: "2022-2024",
+      location: "Stanford, CA",
+      gpa: "3.9/4.0"
     },
   ];
 
+  const coreSkills = [
+    "Full Stack Development",
+    "Cloud Architecture",
+    "System Design",
+    "API Development",
+    "Database Design",
+    "DevOps"
+  ];
+
+  const achievements = [
+    "Top 1% GitHub contributor",
+    "AWS Solutions Architect Certified",
+    "Published 3 research papers",
+    "Led team of 8 developers",
+    "Built apps with 1M+ users"
+  ];
+
+  const certifications = [
+    "AWS Solutions Architect Professional",
+    "Google Cloud Professional Developer",
+    "Certified Kubernetes Administrator",
+    "MongoDB Certified Developer"
+  ];
 
   const getSkillIcon = (skill: string): string => {
     const iconMap: { [key: string]: string } = {
@@ -85,21 +126,43 @@ const Home = () => {
 
   const featuredProjects = [
     {
-      name: "AI-Powered Analytics Platform",
+      title: "AI-Powered Analytics Platform",
       description: "Real-time data processing and machine learning insights for enterprise clients.",
       tech: ["React", "Python", "AWS", "TensorFlow"],
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+      href: "https://github.com/username/ai-analytics"
     },
     {
-      name: "E-Commerce Microservices",
+      title: "E-Commerce Microservices",
       description: "Scalable microservices architecture handling millions of transactions.",
       tech: ["Node.js", "Docker", "MongoDB", "Redis"],
+      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
+      href: "https://github.com/username/ecommerce"
     },
     {
-      name: "Blockchain Voting System",
+      title: "Blockchain Voting System",
       description: "Secure and transparent voting platform using blockchain technology.",
       tech: ["Solidity", "Web3.js", "React", "Ethereum"],
+      image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&h=400&fit=crop",
+      href: "https://github.com/username/blockchain-voting"
     },
   ];
+
+  // Auto-scroll images
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % profileImages.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % profileImages.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + profileImages.length) % profileImages.length);
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -113,22 +176,17 @@ const Home = () => {
         <div className="relative max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Content - Image and Name */}
           <div className="space-y-8 animate-fade-in order-2 lg:order-1">
-          {/* Profile Images */}
-          <div className="relative mx-auto w-80 h-80 lg:w-96 lg:h-96 group">
-            <div className="absolute inset-0 bg-gradient-primary rounded-full blur-2xl opacity-20 group-hover:opacity-40 transition-all duration-200"></div>
-            <div className="relative w-full h-full glass-strong rounded-full overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-200 group-hover:rounded-3xl hover:scale-105">
-              <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
-                alt="Profile"
-                className="w-full h-full object-cover transition-all duration-200 group-hover:scale-110"
-              />
-              <img
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face"
-                alt="Profile alternate"
-                className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-all duration-200"
-              />
+            {/* Profile Image */}
+            <div className="relative mx-auto w-80 h-80 lg:w-96 lg:h-96 group">
+              <div className="absolute inset-0 bg-gradient-primary rounded-full blur-2xl opacity-20 transition-all duration-500"></div>
+              <div className="relative w-full h-full rounded-full overflow-hidden shadow-2xl transition-all duration-700 ease-in-out hover:rounded-3xl hover:scale-105 hover:shadow-primary/20">
+                <img
+                  src={profileImages[currentImageIndex]}
+                  alt="Profile"
+                  className="w-full h-full object-cover transition-all duration-700 ease-in-out"
+                />
+              </div>
             </div>
-          </div>
 
             {/* Name */}
             <div className="text-center">
@@ -147,7 +205,7 @@ const Home = () => {
                   key={link.label}
                   variant="outline"
                   asChild
-                  className="group glass-card hover-lift animation-delay-200"
+                  className="group glass-card hover-lift animation-delay-200 shadow-lg hover:shadow-xl"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <a
@@ -169,7 +227,15 @@ const Home = () => {
           <div className="space-y-8 animate-fade-in animation-delay-600 order-1 lg:order-2">
             <div className="space-y-6">
               <h2 className="text-4xl lg:text-5xl font-bold text-foreground leading-tight">
-                Building the <span className="text-gradient">Future</span> with Code
+                <TypedText 
+                  text="Building the "
+                  speed={100}
+                  onComplete={() => setIsTypingComplete(true)}
+                />
+                {isTypingComplete && (
+                  <span className="text-gradient animate-gradient-x">Future</span>
+                )}
+                {isTypingComplete && " with Code"}
               </h2>
               <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
                 I'm a passionate developer who loves creating scalable web applications and 
@@ -180,10 +246,10 @@ const Home = () => {
 
             {/* Quick Actions */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="hero" size="lg" asChild className="hover-glow">
+              <Button variant="hero" size="lg" asChild className="hover-glow shadow-lg">
                 <a href="/projects">View My Work</a>
               </Button>
-              <Button variant="outline" size="lg" asChild className="hover-glow">
+              <Button variant="outline" size="lg" asChild className="hover-glow shadow-lg">
                 <a href="/contact">Get In Touch</a>
               </Button>
             </div>
@@ -193,6 +259,98 @@ const Home = () => {
         {/* Floating Elements */}
         <div className="absolute top-20 left-10 w-20 h-20 bg-primary/10 rounded-full blur-xl animate-float"></div>
         <div className="absolute bottom-20 right-10 w-32 h-32 bg-accent/10 rounded-full blur-xl animate-float animation-delay-400"></div>
+      </section>
+
+      {/* About Me Section */}
+      <section className="py-20 px-4 bg-muted/30">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Image Carousel */}
+            <div className="relative">
+              <div className="relative w-full h-96 rounded-2xl overflow-hidden shadow-2xl">
+                {/* Main Image */}
+                <img
+                  src={profileImages[currentImageIndex]}
+                  alt="About me"
+                  className="w-full h-full object-cover transition-all duration-500"
+                />
+                
+                {/* Side Images */}
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 opacity-30">
+                  <img
+                    src={profileImages[(currentImageIndex - 1 + profileImages.length) % profileImages.length]}
+                    alt="Previous"
+                    className="w-16 h-16 rounded-lg object-cover"
+                  />
+                </div>
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 opacity-30">
+                  <img
+                    src={profileImages[(currentImageIndex + 1) % profileImages.length]}
+                    alt="Next"
+                    className="w-16 h-16 rounded-lg object-cover"
+                  />
+                </div>
+
+                {/* Navigation Buttons */}
+                <button
+                  onClick={prevImage}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={nextImage}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+
+                {/* Dots */}
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                  {profileImages.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentImageIndex(index)}
+                      className={`w-3 h-3 rounded-full transition-all ${
+                        index === currentImageIndex ? 'bg-white' : 'bg-white/50'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* About Text */}
+            <div className="space-y-6">
+              <div>
+                <h2 className="text-4xl font-bold text-gradient mb-4 flex items-center gap-2">
+                  <User className="w-8 h-8 text-primary" />
+                  About Me
+                </h2>
+                <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
+                  <p>
+                    I'm a passionate full-stack developer with over 5 years of experience building 
+                    scalable web applications and cloud solutions. My journey began during my 
+                    undergraduate studies at IIT Delhi, where I discovered my love for solving 
+                    complex problems through code.
+                  </p>
+                  <p>
+                    Currently pursuing my Master's at Stanford University, I specialize in modern 
+                    JavaScript frameworks, cloud architecture, and machine learning integration. 
+                    I've had the privilege of working with startups and enterprise clients, 
+                    building applications that serve millions of users.
+                  </p>
+                  <p>
+                    When I'm not coding, you'll find me contributing to open source projects, 
+                    writing technical blogs, or exploring the latest developments in AI and 
+                    blockchain technology. I believe in continuous learning and sharing knowledge 
+                    with the developer community.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Skills Section */}
@@ -209,21 +367,21 @@ const Home = () => {
             {skillCategories.map((category, categoryIndex) => (
               <div 
                 key={category.title} 
-                className="bg-card/60 backdrop-blur-md rounded-xl p-6 border border-border/50 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
+                className="glass-card rounded-xl p-8 border border-border/50 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
                 style={{ animationDelay: `${categoryIndex * 200}ms` }}
               >
-                <h3 className="text-xl font-semibold text-foreground mb-6 text-center">
+                <h3 className="text-2xl font-semibold text-foreground mb-8 text-center">
                   {category.title}
                 </h3>
                 
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-3 justify-center">
                   {category.skills.map((skill, skillIndex) => (
                     <span
                       key={skill}
-                      className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium border border-primary/20 shadow-sm hover:shadow-md hover:scale-105 transition-all duration-200 flex items-center gap-2"
+                      className="px-4 py-2 bg-card/80 text-foreground rounded-full text-sm font-medium border border-border/30 shadow-md hover:shadow-lg hover:scale-105 transition-all duration-200 flex items-center gap-3"
                       style={{ animationDelay: `${skillIndex * 50}ms` }}
                     >
-                      <i className={`devicon-${getSkillIcon(skill)} text-sm`}></i>
+                      <i className={`devicon-${getSkillIcon(skill)} text-lg`} style={{ color: 'inherit' }}></i>
                       {skill}
                     </span>
                   ))}
@@ -235,32 +393,45 @@ const Home = () => {
       </section>
 
       {/* Education Section */}
-      <section className="py-20 px-4 bg-muted/20">
+      <section className="py-20 px-4 bg-muted/30">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gradient mb-4">Education</h2>
+            <h2 className="text-4xl font-bold text-gradient mb-4 flex items-center justify-center gap-2">
+              <GraduationCap className="w-8 h-8 text-primary" />
+              Education
+            </h2>
             <p className="text-xl text-muted-foreground">
               Academic foundation and continuous learning
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="space-y-6">
             {education.map((edu, index) => (
               <div 
                 key={edu.degree}
-                className="bg-card/60 backdrop-blur-md rounded-xl p-4 border border-border/50 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
+                className="glass-card rounded-xl p-6 border border-border/50 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
                 style={{ animationDelay: `${index * 200}ms` }}
               >
-                <div className="flex items-start gap-3">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center shadow-sm">
-                    <span className="text-primary font-bold text-lg">
+                <div className="flex items-start gap-4">
+                  <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center shadow-md">
+                    <span className="text-primary font-bold text-xl">
                       {edu.institution.charAt(0)}
                     </span>
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-semibold text-foreground text-sm">{edu.degree}</h3>
-                    <p className="text-primary text-xs font-medium">{edu.institution}</p>
-                    <p className="text-muted-foreground text-xs">{edu.period}</p>
+                    <h3 className="font-bold text-foreground text-lg mb-1">{edu.degree}</h3>
+                    <p className="text-primary text-base font-semibold mb-1">{edu.institution}</p>
+                    <div className="flex items-center gap-4 text-muted-foreground text-sm">
+                      <span className="flex items-center gap-1">
+                        <Calendar className="w-4 h-4" />
+                        {edu.period}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <MapPin className="w-4 h-4" />
+                        {edu.location}
+                      </span>
+                      <span className="font-medium">GPA: {edu.gpa}</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -269,8 +440,61 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Featured Projects Section */}
+      {/* Core Skills, Achievements, Certifications */}
       <section className="py-20 px-4">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+          {/* Core Skills */}
+          <div className="glass-card rounded-xl p-6 border border-border/50 shadow-lg">
+            <h3 className="text-2xl font-bold text-gradient mb-6 flex items-center gap-2">
+              <Target className="w-6 h-6 text-primary" />
+              Core Skills
+            </h3>
+            <div className="space-y-3">
+              {coreSkills.map((skill, index) => (
+                <div key={skill} className="flex items-center gap-2">
+                  <span className="w-2 h-2 bg-primary rounded-full"></span>
+                  <span className="text-foreground">{skill}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Achievements */}
+          <div className="glass-card rounded-xl p-6 border border-border/50 shadow-lg">
+            <h3 className="text-2xl font-bold text-gradient mb-6 flex items-center gap-2">
+              <Star className="w-6 h-6 text-primary" />
+              Achievements
+            </h3>
+            <div className="space-y-3">
+              {achievements.map((achievement, index) => (
+                <div key={achievement} className="flex items-center gap-2">
+                  <span className="w-2 h-2 bg-accent rounded-full"></span>
+                  <span className="text-foreground">{achievement}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Professional Certifications */}
+          <div className="glass-card rounded-xl p-6 border border-border/50 shadow-lg">
+            <h3 className="text-2xl font-bold text-gradient mb-6 flex items-center gap-2">
+              <Award className="w-6 h-6 text-primary" />
+              Certifications
+            </h3>
+            <div className="space-y-3">
+              {certifications.map((cert, index) => (
+                <div key={cert} className="flex items-center gap-2">
+                  <span className="w-2 h-2 bg-primary rounded-full"></span>
+                  <span className="text-foreground text-sm">{cert}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Projects Section */}
+      <section className="py-20 px-4 bg-muted/30">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gradient mb-4 flex items-center justify-center gap-2">
@@ -286,7 +510,7 @@ const Home = () => {
             {featuredProjects.map((project, index) => (
               <div 
                 key={index}
-                className="group bg-card/70 backdrop-blur-md rounded-xl p-6 border border-border/50 shadow-lg hover:shadow-2xl transition-all duration-200 hover:scale-105 cursor-pointer"
+                className="group glass-card rounded-xl overflow-hidden border border-border/50 shadow-lg hover:shadow-2xl transition-all duration-200 hover:scale-105 cursor-pointer"
                 style={{ animationDelay: `${index * 200}ms` }}
               >
                 <div className="relative overflow-hidden">
@@ -315,7 +539,7 @@ const Home = () => {
                       ))}
                     </div>
                     
-                    <Button variant="outline" asChild className="w-full hover-glow">
+                    <Button variant="outline" asChild className="w-full hover-glow shadow-md">
                       <a href={project.href}>
                         View Project
                         <ExternalLink className="w-4 h-4 ml-2" />
@@ -328,7 +552,7 @@ const Home = () => {
           </div>
 
           <div className="text-center mt-12">
-            <Button variant="hero" size="lg" asChild className="hover-glow">
+            <Button variant="hero" size="lg" asChild className="hover-glow shadow-lg">
               <a href="/projects">View All Projects</a>
             </Button>
           </div>

@@ -82,111 +82,30 @@ const Projects = () => {
       <main className="pt-24 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          {/* Featured Projects */}
-          <section className="mb-16">
-            <h2 className="text-3xl font-bold text-foreground mb-8 flex items-center gap-2">
-              <Star className="w-8 h-8 text-primary" />
-              Featured Projects
-            </h2>
-            
-            <div className="grid lg:grid-cols-2 gap-8">
-              {featuredProjects.map((project, index) => (
-                <div 
-                  key={project.id}
-                  className="glass-strong rounded-2xl overflow-hidden hover-lift group"
-                  style={{ animationDelay: `${index * 200}ms` }}
-                >
-                  <div className="relative overflow-hidden">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-smooth"></div>
-                  </div>
-                  
-                  <div className="p-8">
-                    <div className="flex items-start justify-between mb-4">
-                      <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-smooth">
-                        {project.title}
-                      </h3>
-                      <Badge className={getStatusColor(project.status)}>
-                        {project.status}
-                      </Badge>
-                    </div>
-                    
-                    <p className="text-muted-foreground mb-6 leading-relaxed">
-                      {project.longDescription}
-                    </p>
-                    
-                    <div className="space-y-4">
-                      <div className="flex flex-wrap gap-2">
-                        {project.tech.map((tech) => (
-                          <Badge key={tech} variant="secondary" className="bg-primary/10 text-primary border-primary/20">
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
-                      
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                        <div className="flex items-center gap-1">
-                          <Calendar className="w-4 h-4" />
-                          {project.year}
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Users className="w-4 h-4" />
-                          {project.team}
-                        </div>
-                      </div>
-                      
-                      <div className="flex gap-3">
-                        <Button variant="outline" size="sm" asChild className="hover-glow">
-                          <a href={project.github} target="_blank" rel="noopener noreferrer">
-                            <Github className="w-4 h-4 mr-2" />
-                            Code
-                          </a>
-                        </Button>
-                        <Button variant="hero" size="sm" asChild className="hover-glow">
-                          <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="w-4 h-4 mr-2" />
-                            Live Demo
-                          </a>
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Other Projects */}
           <section>
-            <h2 className="text-3xl font-bold text-foreground mb-8">Other Projects</h2>
-            
-            <div className="grid md:grid-cols-2 gap-6">
-              {otherProjects.map((project, index) => (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {projects.map((project, index) => (
                 <div 
                   key={project.id}
-                  className="glass-card rounded-xl overflow-hidden hover-lift group"
-                  style={{ animationDelay: `${index * 150 + 400}ms` }}
+                  className="glass-card rounded-lg overflow-hidden hover-lift group shadow-lg hover:shadow-xl"
+                  style={{ animationDelay: `${index * 150}ms` }}
                 >
                   <div className="relative">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                      className="w-full h-40 object-cover transition-transform duration-300 group-hover:scale-105"
                     />
-                    <Badge className={`absolute top-4 right-4 ${getStatusColor(project.status)}`}>
+                    <Badge className={`absolute top-3 right-3 text-xs ${getStatusColor(project.status)}`}>
                       {project.status}
                     </Badge>
                   </div>
                   
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-smooth">
+                  <div className="p-4">
+                    <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-smooth">
                       {project.title}
                     </h3>
-                    <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
+                    <p className="text-muted-foreground mb-3 text-sm leading-relaxed line-clamp-2">
                       {project.description}
                     </p>
                     
@@ -205,15 +124,15 @@ const Projects = () => {
                       </div>
                       
                       <div className="flex gap-2">
-                        <Button variant="ghost" size="sm" asChild className="flex-1">
+                        <Button variant="ghost" size="sm" asChild className="flex-1 text-xs">
                           <a href={project.github} target="_blank" rel="noopener noreferrer">
-                            <Github className="w-4 h-4 mr-1" />
+                            <Github className="w-3 h-3 mr-1" />
                             Code
                           </a>
                         </Button>
-                        <Button variant="outline" size="sm" asChild className="flex-1">
+                        <Button variant="outline" size="sm" asChild className="flex-1 text-xs">
                           <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="w-4 h-4 mr-1" />
+                            <ExternalLink className="w-3 h-3 mr-1" />
                             Demo
                           </a>
                         </Button>

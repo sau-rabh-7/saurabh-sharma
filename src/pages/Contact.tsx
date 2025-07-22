@@ -57,7 +57,7 @@ const Contact = () => {
 
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Left Side - Contact Information */}
-            <div className="space-y-8">
+            <div className="space-y-6">
               {/* Contact Details */}
               <section className="glass-card p-6 rounded-xl">
                 <h3 className="text-xl font-bold text-foreground mb-6">Contact Information</h3>
@@ -148,31 +148,77 @@ const Contact = () => {
                 </div>
               </section>
 
-              {/* Social Links */}
-              <section className="glass-card p-6 rounded-xl">
-                <h3 className="text-xl font-bold text-foreground mb-4">Connect</h3>
-                <div className="space-y-3">
-                  {socialLinks.map((social) => (
-                    <a
-                      key={social.platform}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-3 bg-muted/30 rounded-lg hover:bg-muted/50 transition-smooth hover-lift group"
-                    >
-                      <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center text-primary group-hover:bg-primary/20 transition-smooth">
-                        {social.icon}
-                      </div>
-                      <div>
-                        <p className="font-medium text-foreground">{social.platform}</p>
-                        <p className="text-sm text-muted-foreground">{social.username}</p>
-                      </div>
-                    </a>
-                  ))}
+            </div>
+
+            {/* Right Side - Contact Form */}
+            <div className="glass-card p-6 rounded-xl max-h-[600px] overflow-hidden">
+              <h3 className="text-xl font-bold text-foreground mb-6">Send Message</h3>
+              <form className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">Name</label>
+                    <input
+                      type="text"
+                      className="w-full px-3 py-2 bg-background/50 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
+                      placeholder="Your name"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">Email</label>
+                    <input
+                      type="email"
+                      className="w-full px-3 py-2 bg-background/50 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
+                      placeholder="your@email.com"
+                    />
+                  </div>
                 </div>
-              </section>
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">Subject</label>
+                  <input
+                    type="text"
+                    className="w-full px-3 py-2 bg-background/50 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
+                    placeholder="What's this about?"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">Message</label>
+                  <textarea
+                    rows={6}
+                    className="w-full px-3 py-2 bg-background/50 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
+                    placeholder="Your message here..."
+                  />
+                </div>
+                <Button variant="hero" className="w-full">
+                  <Send className="w-4 h-4 mr-2" />
+                  Send Message
+                </Button>
+              </form>
             </div>
           </div>
+
+          {/* Social Links - Horizontal */}
+          <section className="mt-12 glass-card p-6 rounded-xl">
+            <h3 className="text-xl font-bold text-foreground mb-6 text-center">Connect</h3>
+            <div className="flex justify-center gap-6">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.platform}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col items-center gap-2 p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-smooth hover-lift group"
+                >
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary group-hover:bg-primary/20 transition-smooth">
+                    {social.icon}
+                  </div>
+                  <div className="text-center">
+                    <p className="font-medium text-foreground text-sm">{social.platform}</p>
+                    <p className="text-xs text-muted-foreground">{social.username}</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </section>
 
           {/* Quick Actions */}
           <section className="mt-16 text-center glass-card p-8 rounded-2xl">

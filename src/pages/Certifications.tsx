@@ -215,61 +215,61 @@ const Certifications = () => {
           <section>
             <h2 className="text-3xl font-bold text-foreground mb-8">Other Certifications</h2>
             
-            <div className="grid md:grid-cols-3 xl:grid-cols-4 gap-4">
+            <div className="grid md:grid-cols-3 xl:grid-cols-4 gap-3">
               {otherCerts.map((cert, index) => (
                 <div 
                   key={cert.id}
-                  className="bg-card/80 backdrop-blur-md rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 group"
+                  className="bg-card/80 backdrop-blur-md rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 group"
                   style={{ animationDelay: `${index * 150 + 400}ms` }}
                 >
-                  <div className="relative">
+                    <div className="relative">
                     <img
                       src={cert.image}
                       alt={cert.title}
-                      className="w-full h-40 object-cover transition-transform duration-300 group-hover:scale-105"
+                      className="w-full h-32 object-cover transition-transform duration-300 group-hover:scale-105"
                     />
-                    <div className="absolute top-3 left-3">
-                      <div className="w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-lg border border-white/20">
+                    <div className="absolute top-2 left-2">
+                      <div className="w-8 h-8 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-sm border border-white/20">
                         {cert.logo}
                       </div>
                     </div>
-                    <div className="absolute top-3 right-3">
+                    <div className="absolute top-2 right-2">
                       {getStatusBadge(cert.expiryDate)}
                     </div>
                   </div>
                   
-                  <div className="p-4">
-                    <h3 className="text-lg font-bold text-foreground mb-1 group-hover:text-primary transition-smooth line-clamp-2">
+                  <div className="p-3">
+                    <h3 className="text-sm font-bold text-foreground mb-1 group-hover:text-primary transition-smooth line-clamp-2">
                       {cert.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground mb-3 font-medium">{cert.issuer}</p>
+                    <p className="text-xs text-muted-foreground mb-2 font-medium">{cert.issuer}</p>
                     
-                    <p className="text-sm text-muted-foreground mb-4 leading-relaxed line-clamp-2">
+                    <p className="text-xs text-muted-foreground mb-3 leading-relaxed line-clamp-2">
                       {cert.description}
                     </p>
                     
-                    <div className="space-y-3">
+                    <div className="space-y-2">
                       <div className="flex flex-wrap gap-1">
-                        {cert.skills.slice(0, 3).map((skill) => (
+                        {cert.skills.slice(0, 2).map((skill) => (
                           <Badge key={skill} variant="outline" className="text-xs">
                             {skill}
                           </Badge>
                         ))}
-                        {cert.skills.length > 3 && (
+                        {cert.skills.length > 2 && (
                           <Badge variant="outline" className="text-xs">
-                            +{cert.skills.length - 3}
+                            +{cert.skills.length - 2}
                           </Badge>
                         )}
                       </div>
                       
-                      <div className="flex gap-2">
-                        <Button variant="ghost" size="sm" asChild className="flex-1 text-xs">
+                      <div className="flex gap-1">
+                        <Button variant="ghost" size="sm" asChild className="flex-1 text-xs p-1">
                           <a href={cert.verificationUrl} target="_blank" rel="noopener noreferrer">
                             <ExternalLink className="w-3 h-3 mr-1" />
                             Verify
                           </a>
                         </Button>
-                        <Button variant="outline" size="sm" asChild className="flex-1 text-xs">
+                        <Button variant="outline" size="sm" asChild className="flex-1 text-xs p-1">
                           <a href={cert.downloadUrl} target="_blank" rel="noopener noreferrer">
                             <Download className="w-3 h-3 mr-1" />
                             Download
