@@ -54,14 +54,6 @@ const Contact = () => {
       
       <main className="pt-24 pb-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className="text-5xl font-bold text-gradient mb-6">Get In Touch</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              I'm always interested in new opportunities and exciting projects. 
-              Let's discuss how we can work together.
-            </p>
-          </div>
 
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}

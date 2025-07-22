@@ -111,14 +111,6 @@ const Education = () => {
       
       <main className="pt-24 pb-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className="text-5xl font-bold text-gradient mb-6">Education</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              My academic journey and continuous learning in computer science, 
-              machine learning, and software engineering.
-            </p>
-          </div>
 
           {/* Education Timeline */}
           <section className="mb-16">

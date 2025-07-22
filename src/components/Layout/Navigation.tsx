@@ -37,6 +37,10 @@ const Navigation = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const isActivePage = (href: string) => {
+    return window.location.pathname === href;
+  };
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -55,7 +59,7 @@ const Navigation = () => {
                 <a
                   key={item.label}
                   href={item.href}
-                  className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-smooth hover:bg-muted"
+                  className={`nav-link ${isActivePage(item.href) ? 'active' : ''}`}
                 >
                   {item.label}
                 </a>
@@ -97,7 +101,7 @@ const Navigation = () => {
               <a
                 key={item.label}
                 href={item.href}
-                className="text-foreground hover:text-primary block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-smooth hover:bg-muted"
+                className={`nav-link block text-base font-medium w-full text-left ${isActivePage(item.href) ? 'active' : ''}`}
               >
                 {item.label}
               </a>

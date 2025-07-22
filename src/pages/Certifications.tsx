@@ -125,14 +125,6 @@ const Certifications = () => {
       
       <main className="pt-24 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className="text-5xl font-bold text-gradient mb-6">Certifications</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Professional certifications and credentials that validate my expertise in 
-              cloud technologies, development practices, and industry standards.
-            </p>
-          </div>
 
           {/* Featured Certifications */}
           <section className="mb-16">
@@ -223,7 +215,7 @@ const Certifications = () => {
           <section>
             <h2 className="text-3xl font-bold text-foreground mb-8">Other Certifications</h2>
             
-            <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-3 xl:grid-cols-4 gap-4">
               {otherCerts.map((cert, index) => (
                 <div 
                   key={cert.id}
@@ -246,7 +238,7 @@ const Certifications = () => {
                     </div>
                   </div>
                   
-                  <div className="p-6">
+                  <div className="p-4">
                     <h3 className="text-lg font-bold text-foreground mb-1 group-hover:text-primary transition-smooth line-clamp-2">
                       {cert.title}
                     </h3>

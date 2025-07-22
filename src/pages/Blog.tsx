@@ -111,14 +111,6 @@ const Blog = () => {
       
       <main className="pt-24 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className="text-5xl font-bold text-gradient mb-6">Blog</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Insights, tutorials, and thoughts on web development, software architecture, 
-              and emerging technologies.
-            </p>
-          </div>
 
           {/* Featured Post */}
           <section className="mb-16">

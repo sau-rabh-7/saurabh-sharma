@@ -81,14 +81,6 @@ const Projects = () => {
       
       <main className="pt-24 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className="text-5xl font-bold text-gradient mb-6">My Projects</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              A collection of projects showcasing my expertise in full-stack development, 
-              modern web technologies, and innovative solutions.
-            </p>
-          </div>
 
           {/* Featured Projects */}
           <section className="mb-16">
