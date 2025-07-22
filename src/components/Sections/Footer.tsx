@@ -22,32 +22,34 @@ const Footer = () => {
   return (
     <footer className="py-12 px-4 border-t border-border bg-background">
       <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Copyright */}
-          <div className="text-center md:text-left">
-            <p className="text-muted-foreground">
-              © {new Date().getFullYear()} Your Name. All rights reserved.
-            </p>
-            <p className="text-sm text-muted-foreground flex items-center justify-center md:justify-start gap-1 mt-1">
-              Built with <Heart className="w-4 h-4 text-red-500" /> using React & Tailwind CSS
+        <div className="text-center space-y-8">
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-foreground">Saurabh Sharma</h3>
+            <p className="text-muted-foreground max-w-md mx-auto">
+              Passionate developer creating innovative solutions for the digital world.
             </p>
           </div>
-
-          {/* Social Links */}
-          <div className="flex items-center gap-4">
+          
+          <div className="flex justify-center gap-4">
             {socialLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-smooth p-2 rounded-full hover:bg-muted"
+                className="text-muted-foreground hover:text-primary transition-smooth p-2 rounded-full hover:bg-muted shadow-md hover:shadow-lg transition-all duration-200"
                 aria-label={link.label}
               >
                 {link.icon}
               </a>
             ))}
           </div>
+        </div>
+        
+        <div className="border-t border-border mt-8 pt-8 text-center">
+          <p className="text-muted-foreground">
+            © {new Date().getFullYear()} Saurabh Sharma. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

@@ -86,8 +86,8 @@ export default {
 				'subtle': 'var(--blur-subtle)',
 			},
 			transitionTimingFunction: {
-				'smooth': 'var(--transition-smooth)',
-				'spring': 'var(--transition-spring)',
+				'smooth': 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+				'spring': 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

@@ -219,7 +219,7 @@ const Certifications = () => {
               {otherCerts.map((cert, index) => (
                 <div 
                   key={cert.id}
-                  className="glass-card rounded-xl overflow-hidden hover-lift group"
+                  className="bg-card/80 backdrop-blur-md rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 group"
                   style={{ animationDelay: `${index * 150 + 400}ms` }}
                 >
                   <div className="relative">

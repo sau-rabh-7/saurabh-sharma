@@ -10,7 +10,7 @@ const Navigation = () => {
     { label: "Home", href: "/" },
     { label: "Projects", href: "/projects" },
     { label: "Experience", href: "/experience" },
-    { label: "Education", href: "/education" },
+    { label: "Papers", href: "/papers" },
     { label: "Certifications", href: "/certifications" },
     { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/contact" },
@@ -18,11 +18,13 @@ const Navigation = () => {
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     
-    if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+    if (savedTheme === "dark") {
       setIsDark(true);
       document.documentElement.classList.add("dark");
+    } else {
+      setIsDark(false);
+      document.documentElement.classList.remove("dark");
     }
   }, []);
 

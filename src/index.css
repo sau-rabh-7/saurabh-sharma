@@ -53,9 +53,9 @@ All colors MUST be HSL.
     --shadow-card: 0 8px 32px -8px hsl(var(--foreground) / 0.1);
     --shadow-glass: 0 8px 32px 0 hsl(var(--background) / 0.37);
     --shadow-hover: 0 25px 50px -12px hsl(var(--primary) / 0.4);
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-spring: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     --blur-glass: blur(16px);
     --blur-subtle: blur(8px);
 
@@ -185,7 +185,7 @@ All colors MUST be HSL.
   }
   
   .nav-link:hover {
-    @apply text-primary bg-muted transform scale-105;
+    @apply text-primary bg-muted/50 transform scale-105;
   }
 }
 
