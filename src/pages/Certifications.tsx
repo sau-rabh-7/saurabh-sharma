@@ -3,6 +3,7 @@ import Footer from "@/components/Sections/Footer";
 import { ExternalLink, Download, Award, Calendar, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Loader } from "@/components/ui/loader";
 
 const Certifications = () => {
   const certifications = [
@@ -197,7 +198,7 @@ const Certifications = () => {
                             Verify
                           </a>
                         </Button>
-                        <Button variant="hero" size="sm" asChild className="flex-1">
+                        <Button variant="outline" size="sm" asChild className="flex-1">
                           <a href={cert.downloadUrl} target="_blank" rel="noopener noreferrer">
                             <Download className="w-4 h-4 mr-2" />
                             Download

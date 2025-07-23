@@ -3,12 +3,12 @@ import Footer from "@/components/Sections/Footer";
 import { Github, Linkedin, Mail, Download, ExternalLink, Star, MapPin, GraduationCap, Calendar, Award, Target, User, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { TypedText } from "@/components/ui/typed-text";
+import DecryptedText from "@/components/ui/DecryptedText";
 import { useState, useEffect } from "react";
 
 const Home = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isTypingComplete, setIsTypingComplete] = useState(false);
+  
 
   const profileImages = [
     "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
@@ -227,21 +227,18 @@ const Home = () => {
           <div className="space-y-8 animate-fade-in animation-delay-600 order-1 lg:order-2">
             <div className="space-y-6">
               <h2 className="text-4xl lg:text-5xl font-bold text-foreground leading-tight">
-                <TypedText 
-                  text="Building the "
-                  speed={100}
-                  onComplete={() => setIsTypingComplete(true)}
-                />
-                {isTypingComplete && (
-                  <span className="text-gradient animate-gradient-x">Future</span>
-                )}
-                {isTypingComplete && " with Code"}
+                Building the <span className="text-gradient animate-gradient-x">Future</span> with Code
               </h2>
-              <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
-                I'm a passionate developer who loves creating scalable web applications and 
-                exploring cutting-edge technologies. With expertise in modern tech stacks, 
-                I turn complex problems into elegant solutions.
-              </p>
+              <div className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
+                <DecryptedText 
+                  text="I'm a passionate developer who loves creating scalable web applications and exploring cutting-edge technologies. With expertise in modern tech stacks, I turn complex problems into elegant solutions."
+                  animateOn="view"
+                  speed={30}
+                  maxIterations={15}
+                  className="text-foreground"
+                  encryptedClassName="text-muted-foreground"
+                />
+              </div>
             </div>
 
             {/* Quick Actions */}
