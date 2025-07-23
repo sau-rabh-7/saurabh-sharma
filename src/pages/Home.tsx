@@ -10,7 +10,7 @@ const Home = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
 
-  const profileImages = [
+  const profileImages = [ 
     "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
     "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face",
@@ -21,17 +21,17 @@ const Home = () => {
     {
       icon: <Github className="w-5 h-5" />,
       label: "GitHub",
-      href: "https://github.com/username",
+      href: "https://github.com/sau-rabh-7",
     },
     {
       icon: <Linkedin className="w-5 h-5" />,
-      label: "LinkedIn", 
-      href: "https://linkedin.com/in/username",
+      label: "Linkedin",
+      href: "www.linkedin.com/in/saurabhsharma98048",
     },
     {
       icon: <Mail className="w-5 h-5" />,
       label: "Email",
-      href: "mailto:hello@example.com",
+      href: "saurabh98048@gmail.com",
     },
     {
       icon: <Download className="w-5 h-5" />,
@@ -43,39 +43,39 @@ const Home = () => {
   const skillCategories = [
     {
       title: "Languages",
-      skills: ["JavaScript", "TypeScript", "Python", "Java", "Go"]
+      skills: ["JavaScript", "TypeScript", "Python", "Java", "C", "C++"]
     },
     {
       title: "Frameworks",
-      skills: ["React", "Next.js", "Express.js", "Django", "Spring Boot"]
+      skills: ["React", "Next.js", "Express.js", "Django", "Flask", "TensorFlow", "PyTorch", "Bootstrap", "Tailwind"]
     },
     {
       title: "Tools",
-      skills: ["AWS", "Docker", "Git", "MongoDB", "PostgreSQL"]
+      skills: ["AWS", "Docker", "Kubernetes", "Git", "GitHub", "MongoDB", "PostgreSQL", "MySQL"]
     }
   ];
 
   const education = [
     {
-      degree: "High School Diploma",
-      institution: "Central High School",
-      period: "2016-2018",
-      location: "New York, NY",
-      gpa: "3.8/4.0"
-    },
-    {
       degree: "Bachelor of Technology in Computer Science",
-      institution: "Indian Institute of Technology",
-      period: "2018-2022",
-      location: "Delhi, India",
-      gpa: "8.5/10.0"
+      institution: "Vellore Institute of Technology",
+      period: "2022-2026",
+      location: "Vellore, India",
+      gpa: "8.96/10.0"
     },
     {
-      degree: "Master of Science in Computer Science",
-      institution: "Stanford University",
-      period: "2022-2024",
-      location: "Stanford, CA",
-      gpa: "3.9/4.0"
+      degree: "Higher Secondary Education",
+      institution: "Mithila Institute of Technology",
+      period: "2020-2022",
+      location: "Janakpur, Nepal",
+      gpa: "3.22/10.0"
+    },
+    {
+      degree: "Secondary Education Examination (SEE)",
+      institution: "Daffodils Public School",
+      period: "2006-2019",
+      location: "Janakpur, Nepal",
+      gpa: "3.95/4.0"
     },
   ];
 
@@ -85,11 +85,11 @@ const Home = () => {
     "System Design",
     "API Development",
     "Database Design",
-    "DevOps"
+    "Applied Machine Learning & AI Integration"
   ];
 
   const achievements = [
-    "Top 1% GitHub contributor",
+    "Top 10% GitHub contributor",
     "AWS Solutions Architect Certified",
     "Published 3 research papers",
     "Led team of 8 developers",
@@ -100,7 +100,8 @@ const Home = () => {
     "AWS Solutions Architect Professional",
     "Google Cloud Professional Developer",
     "Certified Kubernetes Administrator",
-    "MongoDB Certified Developer"
+    "MongoDB Certified Developer",
+    "GenAI using IBM Watsonx"
   ];
 
   const getSkillIcon = (skill: string): string => {
@@ -115,11 +116,21 @@ const Home = () => {
       'Express.js': 'express-original',
       'Django': 'django-plain',
       'Spring Boot': 'spring-plain',
-      'AWS': 'amazonwebservices-original',
+      'AWS': 'amazonwebservices-plain',
       'Docker': 'docker-plain',
       'Git': 'git-plain',
       'MongoDB': 'mongodb-plain',
       'PostgreSQL': 'postgresql-plain',
+      'Flask': 'flask-plain',
+      'TensorFlow': 'tensorflow-original',
+      'PyTorch': "pytorch-plain",
+      'Kubernetes': "kubernetes-plain",
+      'GitHub': "github-plain",
+      'Tailwind': "tailwindcss-plain",
+      'MySQL': "mysql-plain",
+      'C': 'c-plain',
+      'C++': 'cplusplus-plain',
+      'Bootstrap': 'bootstrap-plain'
     };
     return iconMap[skill] || 'devicon-plain';
   };
@@ -178,19 +189,38 @@ const Home = () => {
           <div className="space-y-8 animate-fade-in order-2 lg:order-1">
             {/* Profile Image */}
             <div className="relative mx-auto w-80 h-80 lg:w-96 lg:h-96 group">
-              <div className="absolute inset-0 bg-gradient-primary rounded-full blur-2xl opacity-20 transition-all duration-500"></div>
-              <div className="relative w-full h-full rounded-full overflow-hidden shadow-2xl transition-all duration-700 ease-in-out hover:rounded-3xl hover:scale-105 hover:shadow-primary/20">
-                <img
-                  src={profileImages[currentImageIndex]}
-                  alt="Profile"
-                  className="w-full h-full object-cover transition-all duration-700 ease-in-out"
-                />
-              </div>
-            </div>
+  {/* subtle glowing backdrop */}
+  <div className="absolute inset-0 bg-gradient-to-tr from-indigo-400 to-purple-500 rounded-full blur-3xl opacity-20 transition-all duration-200"></div>
+
+  {/* circle → squircle on hover */}
+  <div className="
+      relative 
+      w-full h-full 
+      rounded-full 
+      overflow-hidden 
+      bg-white/20 
+      backdrop-blur-sm 
+      shadow-xl 
+      transition-all duration-200 ease-in-out
+      hover:rounded-2 xl 
+      hover:shadow-2xl
+      hover:scale-105
+    ">
+    <img
+      src="src\components\images\b&w-pfp.jpg"
+      alt="Profile"
+      className="w-full h-full object-cover"
+    />
+  </div>
+</div>
+
 
             {/* Name */}
             <div className="text-center">
-              <h1 className="text-4xl lg:text-5xl font-bold text-gradient mb-2">
+              <h1 className="text-5xl font-semibold 
+            bg-gradient-to-r bg-clip-text  text-transparent 
+            from-indigo-500 via-purple-500 to-indigo-500
+            animate-text">
                 Saurabh Sharma
               </h1>
               <p className="text-xl text-muted-foreground">
@@ -227,28 +257,73 @@ const Home = () => {
           <div className="space-y-8 animate-fade-in animation-delay-600 order-1 lg:order-2">
             <div className="space-y-6">
               <h2 className="text-4xl lg:text-5xl font-bold text-foreground leading-tight">
-                Building the <span className="text-gradient animate-gradient-x">Future</span> with Code
+                Building the <span className="text-5xl font-semibold 
+            bg-gradient-to-r bg-clip-text  text-transparent 
+            from-indigo-300 via-purple-700 to-indigo-300
+            animate-text">Future</span> with Code
               </h2>
               <div className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
+                <div>
                 <DecryptedText 
-                  text="I'm a passionate developer who loves creating scalable web applications and exploring cutting-edge technologies. With expertise in modern tech stacks, I turn complex problems into elegant solutions."
+                  text="I'm a passionate developer who loves creating scalable web "
                   animateOn="view"
-                  speed={30}
-                  maxIterations={15}
-                  className="text-foreground"
-                  encryptedClassName="text-muted-foreground"
+                  speed={50}
+                  maxIterations={10}
+                  className="text-muted-foreground"
+                  encryptedClassName="text-accent"
                 />
+                </div>
+                <div>
+                <DecryptedText 
+                  text="applications and exploring cutting-edge technologies. With"
+                  animateOn="view"
+                  speed={50}
+                  maxIterations={10}
+                  className="text-muted-foreground"
+                  encryptedClassName="text-accent"
+                />
+                </div>
+                <div>
+                <DecryptedText 
+                  text="expertise in modern tech stacks, I turn complex problems into"
+                  animateOn="view"
+                  speed={50}
+                  maxIterations={10}
+                  className="text-muted-foreground"
+                  encryptedClassName="text-accent"
+                />
+                </div>
+                <div>
+                <DecryptedText 
+                  text="elegant solutions."
+                  animateOn="view"
+                  speed={50}
+                  maxIterations={10}
+                  className="text-muted-foreground"
+                  encryptedClassName="text-accent"
+                />
+                </div>
               </div>
             </div>
 
             {/* Quick Actions */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="hero" size="lg" asChild className="hover-glow shadow-lg">
-                <a href="/projects">View My Work</a>
-              </Button>
-              <Button variant="outline" size="lg" asChild className="hover-glow shadow-lg">
-                <a href="/contact">Get In Touch</a>
-              </Button>
+            <Button variant="outline" size="lg" asChild className="text-primary group flex-1 transition-all duration-300 ease-spring hover:-translate-y-1 hover:shadow-lg">
+              <a
+                href="/projects"
+              >
+                <span>View My Work</span>
+                <ExternalLink className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </a>
+            </Button>
+              <Button variant="outline" size="lg" asChild className="text-primary group flex-1 transition-all duration-300 ease-spring hover:-translate-y-1 hover:shadow-lg">
+              <a
+                href="/contact"
+              >
+                <span>Get In Touch</span>
+                <ExternalLink className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </a>
+            </Button>
             </div>
           </div>
         </div>
@@ -328,14 +403,14 @@ const Home = () => {
                   <p>
                     I'm a passionate full-stack developer with over 5 years of experience building 
                     scalable web applications and cloud solutions. My journey began during my 
-                    undergraduate studies at IIT Delhi, where I discovered my love for solving 
+                    undergraduate studies at VIT University, where I discovered my love for solving 
                     complex problems through code.
                   </p>
                   <p>
-                    Currently pursuing my Master's at Stanford University, I specialize in modern 
-                    JavaScript frameworks, cloud architecture, and machine learning integration. 
-                    I've had the privilege of working with startups and enterprise clients, 
-                    building applications that serve millions of users.
+                  Currently pursuing my Bachelor's degree in Computer Science, I specialize in modern
+                   JavaScript frameworks, cloud architecture, and machine learning integration. I've 
+                   had the opportunity to work with both startups and enterprise clients, building 
+                   scalable applications that serve millions of users.
                   </p>
                   <p>
                     When I'm not coding, you'll find me contributing to open source projects, 
@@ -367,7 +442,7 @@ const Home = () => {
                 className="glass-card rounded-xl p-8 border border-border/50 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
                 style={{ animationDelay: `${categoryIndex * 200}ms` }}
               >
-                <h3 className="text-2xl font-semibold text-foreground mb-8 text-center">
+                <h3 className="text-3xl font-semibold text-accent mb-8 text-center">
                   {category.title}
                 </h3>
                 
@@ -458,14 +533,14 @@ const Home = () => {
 
           {/* Achievements */}
           <div className="glass-card rounded-xl p-6 border border-border/50 shadow-lg">
-            <h3 className="text-2xl font-bold text-gradient mb-6 flex items-center gap-2">
+            <h3 className="text-2xl font-bold text-gradient mb-6 flex items-center gap-2 ">
               <Star className="w-6 h-6 text-primary" />
               Achievements
             </h3>
             <div className="space-y-3">
               {achievements.map((achievement, index) => (
                 <div key={achievement} className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-accent rounded-full"></span>
+                  <span className="w-2 h-2 rounded-full"></span>
                   <span className="text-foreground">{achievement}</span>
                 </div>
               ))}
@@ -549,8 +624,13 @@ const Home = () => {
           </div>
 
           <div className="text-center mt-12">
-            <Button variant="hero" size="lg" asChild className="hover-glow shadow-lg">
-              <a href="/projects">View All Projects</a>
+          <Button variant="outline" size="lg" asChild className="text-primary group flex-1 transition-all duration-300 ease-spring hover:-translate-y-1 hover:shadow-lg">
+              <a
+                href="/projects"
+              >
+                <span>View All Projects</span>
+                <ExternalLink className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </a>
             </Button>
           </div>
         </div>

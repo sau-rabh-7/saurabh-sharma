@@ -1,15 +1,15 @@
 import Navigation from "@/components/Layout/Navigation";
 import Footer from "@/components/Sections/Footer";
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, Calendar, MessageCircle } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, Calendar, MessageCircle, ChevronRight, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 const Contact = () => {
   const contactInfo = {
-    email: "hello@johndoe.dev",
-    phone: "+1 (555) 123-4567",
-    location: "San Francisco, CA",
-    timezone: "PST (UTC-8)",
+    email: "saurabh98048@gmail.com",
+    phone: "+91 9263591593",
+    location: "Nepal / India",
+    timezone: "GMT+5:45 / GMT+5:30",
     status: "Open to Work",
     availableFor: ["Full-time positions", "Freelance projects", "Consulting", "Speaking engagements"]
   };
@@ -18,20 +18,20 @@ const Contact = () => {
     {
       platform: "GitHub",
       icon: <Github className="w-5 h-5" />,
-      href: "https://github.com/username",
-      username: "@username"
+      href: "https://github.com/sau-rabh-7",
+      username: "@sau-rabh-7"
     },
     {
       platform: "LinkedIn",
       icon: <Linkedin className="w-5 h-5" />,
-      href: "https://linkedin.com/in/username",
-      username: "in/username"
+      href: "www.linkedin.com/in/saurabhsharma98048",
+      username: "in/saurabhsharma98048"
     },
     {
       platform: "Twitter",
       icon: <Twitter className="w-5 h-5" />,
-      href: "https://twitter.com/username",
-      username: "@username"
+      href: "https://x.com/saurabh98048",
+      username: "@saurabh98048"
     }
   ];
 
@@ -188,9 +188,10 @@ const Contact = () => {
                     placeholder="Your message here..."
                   />
                 </div>
-                <Button variant="hero" className="w-full">
-                  <Send className="w-4 h-4 mr-2" />
-                  Send Message
+                <Button variant="hero" className="group w-full flex items-center transition-all duration-300 ease-spring hover:-translate-y-1 hover:shadow-lg">
+                <Send className="w-4 h-4 mr-2 text-primary transition-colors" />
+                <span>Send Message</span>
+                <ChevronRight className="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </Button>
               </form>
             </div>
@@ -227,23 +228,30 @@ const Contact = () => {
               Need something specific? Here are some quick ways to get in touch.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-2xl mx-auto">
-              <Button variant="outline" size="lg" asChild className="flex-1">
-                <a href={`mailto:${contactInfo.email}?subject=Job Opportunity`}>
-                  <Mail className="w-4 h-4 mr-2" />
-                  Job Inquiry
-                </a>
-              </Button>
-              <Button variant="outline" size="lg" asChild className="flex-1">
-                <a href={`mailto:${contactInfo.email}?subject=Freelance Project`}>
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  Project Inquiry
-                </a>
-              </Button>
-              <Button variant="hero" size="lg" asChild className="flex-1">
-                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-                  <Calendar className="w-4 h-4 mr-2" />
-                  Schedule Call
-                </a>
+            <Button variant="outline" size="lg" asChild className="group flex-1 transition-all duration-300 ease-spring hover:-translate-y-1 hover:shadow-lg">
+              <a
+                href={`mailto:${contactInfo.email}?subject=Job Opportunity`}
+                className="flex items-center w-full"
+              >
+                <Mail className="w-4 h-4 mr-2 text-primary transition-colors" />
+                <span>Job Inquiry</span>
+                <ExternalLink className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </a>
+            </Button>
+            <Button variant="outline" size="lg" asChild className="group flex-1 transition-all duration-300 ease-spring hover:-translate-y-1 hover:shadow-lg">
+              <a
+                href={`mailto:${contactInfo.email}?subject=Job Opportunity`}
+                className="flex items-center w-full"
+              >
+                <Mail className="w-4 h-4 mr-2 text-primary transition-colors" />
+                <span>Project Inquiry</span>
+                <ExternalLink className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </a>
+            </Button>
+              <Button variant="hero" size="lg" className="group flex-1 flex items-center w-full transition-all duration-300 ease-spring hover:-translate-y-1 hover:shadow-lg">
+                  <Calendar className="w-4 h-4 mr-2 text-primary transition-colors" />
+                  <span>Schedule Call</span>
+                  <ChevronRight className="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </Button>
             </div>
           </section>

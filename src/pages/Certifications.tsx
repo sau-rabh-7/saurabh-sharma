@@ -3,7 +3,7 @@ import Footer from "@/components/Sections/Footer";
 import { ExternalLink, Download, Award, Calendar, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Loader } from "@/components/ui/loader";
+//import { Loader } from "@/components/ui/loader";
 
 const Certifications = () => {
   const certifications = [

@@ -1,8 +1,21 @@
-import { useEffect, useRef, useId, ReactNode } from "react";
+// GlassSurface.tsx
+
+import {
+  useEffect,
+  useRef,
+  useId,
+  FC,
+  ReactNode,
+  CSSProperties,
+} from "react";
 import "./GlassSurface.css";
 
+// Define a specific type for channel selectors
+type ChannelSelector = "R" | "G" | "B" | "A";
+
+// Define the interface for the component's props
 interface GlassSurfaceProps {
-  children: ReactNode;
+  children?: ReactNode;
   width?: number | string;
   height?: number | string;
   borderRadius?: number;
@@ -17,14 +30,14 @@ interface GlassSurfaceProps {
   redOffset?: number;
   greenOffset?: number;
   blueOffset?: number;
-  xChannel?: string;
-  yChannel?: string;
+  xChannel?: ChannelSelector;
+  yChannel?: ChannelSelector;
   mixBlendMode?: string;
   className?: string;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 }
 
-const GlassSurface = ({
+const GlassSurface: FC<GlassSurfaceProps> = ({
   children,
   width = 200,
   height = 80,
@@ -45,12 +58,13 @@ const GlassSurface = ({
   mixBlendMode = "difference",
   className = "",
   style = {},
-}: GlassSurfaceProps) => {
-  const uniqueId = useId().replace(/:/g, '-');
+}) => {
+  const uniqueId = useId().replace(/:/g, "-");
   const filterId = `glass-filter-${uniqueId}`;
   const redGradId = `red-grad-${uniqueId}`;
   const blueGradId = `blue-grad-${uniqueId}`;
-  
+
+  // Type the refs for DOM and SVG elements
   const containerRef = useRef<HTMLDivElement>(null);
   const feImageRef = useRef<SVGFEImageElement>(null);
   const redChannelRef = useRef<SVGFEDisplacementMapElement>(null);
@@ -58,7 +72,7 @@ const GlassSurface = ({
   const blueChannelRef = useRef<SVGFEDisplacementMapElement>(null);
   const gaussianBlurRef = useRef<SVGFEGaussianBlurElement>(null);
 
-  const generateDisplacementMap = () => {
+  const generateDisplacementMap = (): string => {
     const rect = containerRef.current?.getBoundingClientRect();
     const actualWidth = rect?.width || 400;
     const actualHeight = rect?.height || 200;
@@ -110,8 +124,6 @@ const GlassSurface = ({
     gaussianBlurRef.current?.setAttribute("stdDeviation", displace.toString());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
-    width,
-    height,
     borderRadius,
     borderWidth,
     brightness,
@@ -127,10 +139,12 @@ const GlassSurface = ({
     mixBlendMode,
   ]);
 
+  // Merged the duplicated ResizeObserver hooks from the original code.
   useEffect(() => {
     if (!containerRef.current) return;
 
     const resizeObserver = new ResizeObserver(() => {
+      // Use a timeout to avoid "ResizeObserver loop limit exceeded" error.
       setTimeout(updateDisplacementMap, 0);
     });
 
@@ -143,13 +157,18 @@ const GlassSurface = ({
   }, []);
 
   useEffect(() => {
+    // This effect ensures the map is updated if width/height props change.
     setTimeout(updateDisplacementMap, 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [width, height]);
 
-  const supportsSVGFilters = () => {
-    const isWebkit =
-      /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
+  const supportsSVGFilters = (): boolean => {
+    // Add a guard for Server-Side Rendering (SSR) environments.
+    if (typeof window === "undefined" || !("navigator" in window)) {
+      return false;
+    }
+    
+    const isWebkit = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
     const isFirefox = /Firefox/.test(navigator.userAgent);
 
     if (isWebkit || isFirefox) {
@@ -161,15 +180,20 @@ const GlassSurface = ({
     return div.style.backdropFilter !== "";
   };
 
-  const containerStyle: React.CSSProperties = {
+  // Define a more specific type for the style object to include CSS custom properties.
+  const containerStyle: CSSProperties & {
+    "--glass-frost": number;
+    "--glass-saturation": number;
+    "--filter-id": string;
+  } = {
     ...style,
     width: typeof width === "number" ? `${width}px` : width,
     height: typeof height === "number" ? `${height}px` : height,
     borderRadius: `${borderRadius}px`,
-    '--glass-frost': backgroundOpacity,
-    '--glass-saturation': saturation,
-    '--filter-id': `url(#${filterId})`,
-  } as React.CSSProperties;
+    "--glass-frost": backgroundOpacity,
+    "--glass-saturation": saturation,
+    "--filter-id": `url(#${filterId})`,
+  };
 
   return (
     <div
@@ -189,6 +213,7 @@ const GlassSurface = ({
           >
             <feImage
               ref={feImageRef}
+              href="" // Set initial href, it will be updated by useEffect
               x="0"
               y="0"
               width="100%"
@@ -201,16 +226,12 @@ const GlassSurface = ({
               ref={redChannelRef}
               in="SourceGraphic"
               in2="map"
-              id="redchannel"
               result="dispRed"
             />
             <feColorMatrix
               in="dispRed"
               type="matrix"
-              values="1 0 0 0 0
-                      0 0 0 0 0
-                      0 0 0 0 0
-                      0 0 0 1 0"
+              values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"
               result="red"
             />
 
@@ -218,16 +239,12 @@ const GlassSurface = ({
               ref={greenChannelRef}
               in="SourceGraphic"
               in2="map"
-              id="greenchannel"
               result="dispGreen"
             />
             <feColorMatrix
               in="dispGreen"
               type="matrix"
-              values="0 0 0 0 0
-                      0 1 0 0 0
-                      0 0 0 0 0
-                      0 0 0 1 0"
+              values="0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0"
               result="green"
             />
 
@@ -235,16 +252,12 @@ const GlassSurface = ({
               ref={blueChannelRef}
               in="SourceGraphic"
               in2="map"
-              id="bluechannel"
               result="dispBlue"
             />
             <feColorMatrix
               in="dispBlue"
               type="matrix"
-              values="0 0 0 0 0
-                      0 0 0 0 0
-                      0 0 1 0 0
-                      0 0 0 1 0"
+              values="0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0"
               result="blue"
             />
 
