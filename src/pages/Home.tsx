@@ -202,7 +202,7 @@ const Home = () => {
       backdrop-blur-sm 
       shadow-xl 
       transition-all duration-200 ease-in-out
-      hover:rounded-2 xl 
+      hover:rounded-2xl 
       hover:shadow-2xl
       hover:scale-105
     ">
