@@ -26,12 +26,12 @@ const Home = () => {
     {
       icon: <Linkedin className="w-5 h-5" />,
       label: "Linkedin",
-      href: "www.linkedin.com/in/saurabhsharma98048",
+      href: "https://linkedin.com/in/saurabhsharma98048",
     },
     {
       icon: <Mail className="w-5 h-5" />,
       label: "Email",
-      href: "saurabh98048@gmail.com",
+      href: "https://mail.google.com/mail/u/saurabh98048@gmail.com/#compose",
     },
     {
       icon: <Download className="w-5 h-5" />,
@@ -207,7 +207,7 @@ const Home = () => {
       hover:scale-105
     ">
     <img
-      src="src\components\images\b&w-pfp.jpg"
+      src="public\images\b&w-pfp.jpg"
       alt="Profile"
       className="w-full h-full object-cover"
     />
