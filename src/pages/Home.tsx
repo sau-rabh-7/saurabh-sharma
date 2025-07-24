@@ -207,7 +207,7 @@ const Home = () => {
       hover:scale-105
     ">
     <img
-      src="public\images\b&w-pfp.jpg"
+      src="public\images\bw-pfp.jpg"
       alt="Profile"
       className="w-full h-full object-cover"
     />
