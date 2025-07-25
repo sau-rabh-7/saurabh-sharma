@@ -227,28 +227,28 @@ const Contact = () => {
             <p className="text-muted-foreground mb-6">
               Need something specific? Here are some quick ways to get in touch.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-2xl mx-auto">
-            <Button variant="outline" size="lg" asChild className="group flex-1 transition-all duration-300 ease-spring hover:-translate-y-1 hover:shadow-lg">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md sm:max-w-2xl mx-auto">
+            <Button variant="outline" size="lg" asChild className="group sm:flex-1 h-12 px-4 transition-all duration-300 ease-spring hover:-translate-y-1 hover:shadow-lg">
               <a
                 href={`mailto:${contactInfo.email}?subject=Job Opportunity`}
-                className="flex items-center w-full"
+                className="flex items-center justify-center w-full"
               >
                 <Mail className="w-4 h-4 mr-2 text-primary transition-colors" />
                 <span>Job Inquiry</span>
                 <ExternalLink className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </a>
             </Button>
-            <Button variant="outline" size="lg" asChild className="group flex-1 transition-all duration-300 ease-spring hover:-translate-y-1 hover:shadow-lg">
+            <Button variant="outline" size="lg" asChild className="group sm:flex-1 h-12 px-4 transition-all duration-300 ease-spring hover:-translate-y-1 hover:shadow-lg">
               <a
-                href={`mailto:${contactInfo.email}?subject=Job Opportunity`}
-                className="flex items-center w-full"
+                href={`mailto:${contactInfo.email}?subject=Project Inquiry`}
+                className="flex items-center justify-center w-full"
               >
                 <Mail className="w-4 h-4 mr-2 text-primary transition-colors" />
                 <span>Project Inquiry</span>
                 <ExternalLink className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </a>
             </Button>
-              <Button variant="hero" size="lg" className="group flex-1 flex items-center w-full transition-all duration-300 ease-spring hover:-translate-y-1 hover:shadow-lg">
+              <Button variant="hero" size="lg" className="group sm:flex-1 h-12 px-4 flex items-center justify-center w-full transition-all duration-300 ease-spring hover:-translate-y-1 hover:shadow-lg">
                   <Calendar className="w-4 h-4 mr-2 text-primary transition-colors" />
                   <span>Schedule Call</span>
                   <ChevronRight className="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

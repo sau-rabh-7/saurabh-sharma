@@ -307,18 +307,20 @@ const Home = () => {
             </div>
 
             {/* Quick Actions */}
-            <div className="flex flex-col sm:flex-row gap-4">
-            <Button variant="outline" size="lg" asChild className="text-primary group flex-1 transition-all duration-300 ease-spring hover:-translate-y-1 hover:shadow-lg">
+            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto sm:max-w-none">
+            <Button variant="outline" size="lg" asChild className="text-primary group sm:flex-1 h-12 px-6 transition-all duration-300 ease-spring hover:-translate-y-1 hover:shadow-lg">
               <a
                 href="/projects"
+                className="flex items-center justify-center w-full"
               >
                 <span>View My Work</span>
                 <ExternalLink className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </a>
             </Button>
-              <Button variant="outline" size="lg" asChild className="text-primary group flex-1 transition-all duration-300 ease-spring hover:-translate-y-1 hover:shadow-lg">
+              <Button variant="outline" size="lg" asChild className="text-primary group sm:flex-1 h-12 px-6 transition-all duration-300 ease-spring hover:-translate-y-1 hover:shadow-lg">
               <a
                 href="/contact"
+                className="flex items-center justify-center w-full"
               >
                 <span>Get In Touch</span>
                 <ExternalLink className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
