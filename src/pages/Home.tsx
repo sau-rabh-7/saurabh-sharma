@@ -73,9 +73,10 @@ const Home = () => {
         <div className="absolute inset-0 animate-gradient opacity-30"></div>
         
         <div className="relative max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-          {/* --- MOBILE: TOP, DESKTOP: LEFT --- */}
-          <div className="space-y-8 animate-fade-in text-center lg:text-left order-2 lg:order-1">
-            <div className="relative mx-auto lg:mx-0 w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 group">
+          {/* --- Profile Info Section --- */}
+          {/* Order 1 on mobile, Order 1 on desktop (left side) */}
+          <div className="space-y-8 animate-fade-in text-center order-1 lg:order-1">
+            <div className="relative mx-auto w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 group">
               <div className="absolute inset-0 bg-gradient-to-tr from-indigo-400 to-purple-500 rounded-full blur-3xl opacity-20 transition-all duration-200"></div>
               <div className="relative w-full h-full rounded-full overflow-hidden bg-white/20 backdrop-blur-sm shadow-xl transition-all duration-200 ease-in-out hover:rounded-3xl hover:shadow-2xl hover:scale-105">
                 <img src="images/bw-pfp.jpg" alt="Profile" className="w-full h-full object-cover" />
@@ -104,8 +105,9 @@ const Home = () => {
             </div>
           </div>
 
-          {/* --- MOBILE: BOTTOM, DESKTOP: RIGHT --- */}
-          <div className="space-y-8 animate-fade-in animation-delay-600 order-1 lg:order-2">
+          {/* --- Introduction Section --- */}
+          {/* Order 2 on mobile, Order 2 on desktop (right side) */}
+          <div className="space-y-8 animate-fade-in animation-delay-600 order-2 lg:order-2">
             <div className="space-y-6">
               <h2 className="text-4xl lg:text-5xl font-bold text-foreground leading-tight text-center lg:text-left">
                 Building the <span className="text-5xl font-semibold bg-gradient-to-r bg-clip-text text-transparent from-indigo-300 via-purple-700 to-indigo-300 animate-text">Future</span> with Code
