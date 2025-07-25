@@ -3,16 +3,16 @@ import Footer from "@/components/Sections/Footer";
 import { ExternalLink, Download, Award, Calendar, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-//import { Loader } from "@/components/ui/loader";
 
-const Certifications = () => {
+const CertificationsPage = () => {
+  // --- Data using reliable YYYY-MM-DD date format ---
   const certifications = [
     {
       id: 1,
       title: "AWS Certified Solutions Architect - Professional",
       issuer: "Amazon Web Services",
-      issueDate: "March 2023",
-      expiryDate: "March 2026",
+      issueDate: "2023-03-15",
+      expiryDate: "2026-03-15",
       credentialId: "AWS-PSA-12345",
       logo: "☁️",
       image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop",
@@ -26,8 +26,8 @@ const Certifications = () => {
       id: 2,
       title: "Google Cloud Professional Cloud Developer",
       issuer: "Google Cloud",
-      issueDate: "August 2022",
-      expiryDate: "August 2024",
+      issueDate: "2022-08-01",
+      expiryDate: "2024-08-01",
       credentialId: "GCP-PCD-67890",
       logo: "🔧",
       image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop",
@@ -41,8 +41,8 @@ const Certifications = () => {
       id: 3,
       title: "Certified Kubernetes Administrator (CKA)",
       issuer: "Cloud Native Computing Foundation",
-      issueDate: "June 2022",
-      expiryDate: "June 2025",
+      issueDate: "2022-06-20",
+      expiryDate: "2025-06-20",
       credentialId: "CKA-54321",
       logo: "⚓",
       image: "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=600&h=400&fit=crop",
@@ -56,8 +56,8 @@ const Certifications = () => {
       id: 4,
       title: "MongoDB Certified Developer Associate",
       issuer: "MongoDB Inc.",
-      issueDate: "February 2021",
-      expiryDate: "February 2024",
+      issueDate: "2021-02-10",
+      expiryDate: "2024-02-10",
       credentialId: "MDB-DEV-98765",
       logo: "🍃",
       image: "https://images.unsplash.com/photo-1558618069-fbd25c85cd64?w=600&h=400&fit=crop",
@@ -71,8 +71,8 @@ const Certifications = () => {
       id: 5,
       title: "Microsoft Azure Fundamentals",
       issuer: "Microsoft",
-      issueDate: "November 2021",
-      expiryDate: "Never expires",
+      issueDate: "2021-11-05",
+      expiryDate: null, // Use null for "Never expires"
       credentialId: "AZ-900-11111",
       logo: "🔷",
       image: "https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=600&h=400&fit=crop",
@@ -86,8 +86,8 @@ const Certifications = () => {
       id: 6,
       title: "Certified Ethical Hacker (CEH)",
       issuer: "EC-Council",
-      issueDate: "September 2020",
-      expiryDate: "September 2023",
+      issueDate: "2020-09-18",
+      expiryDate: "2023-09-18",
       credentialId: "CEH-22222",
       logo: "🔒",
       image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&h=400&fit=crop",
@@ -99,24 +99,54 @@ const Certifications = () => {
     }
   ];
 
-  const featuredCerts = certifications.filter(cert => cert.featured);
-  const otherCerts = certifications.filter(cert => !cert.featured);
-
-  const getStatusBadge = (expiryDate: string) => {
-    if (expiryDate === "Never expires") {
-      return <Badge className="bg-accent/20 text-accent border-accent/30">Permanent</Badge>;
+  // --- Refactored logic to be more robust ---
+  const getCertificationStatus = (expiryDate: string | null): 'permanent' | 'valid' | 'expiring' | 'expired' => {
+    if (expiryDate === null) {
+      return 'permanent';
     }
     
     const expiry = new Date(expiryDate);
     const now = new Date();
-    const monthsUntilExpiry = (expiry.getTime() - now.getTime()) / (1000 * 60 * 60 * 24 * 30);
+    
+    // Check if the date is valid before doing calculations
+    if (isNaN(expiry.getTime())) {
+        return 'expired'; // Treat invalid dates as expired
+    }
+
+    if (expiry < now) {
+        return 'expired';
+    }
+
+    const monthsUntilExpiry = (expiry.getTime() - now.getTime()) / (1000 * 60 * 60 * 24 * 30.44); // More accurate month calculation
     
     if (monthsUntilExpiry > 12) {
-      return <Badge className="bg-accent/20 text-accent border-accent/30">Valid</Badge>;
-    } else if (monthsUntilExpiry > 3) {
-      return <Badge className="bg-primary/20 text-primary border-primary/30">Expiring Soon</Badge>;
+      return 'valid';
     } else {
-      return <Badge variant="destructive">Expired</Badge>;
+      return 'expiring';
+    }
+  };
+
+  const certificationsWithStatus = certifications.map(cert => ({
+      ...cert,
+      status: getCertificationStatus(cert.expiryDate)
+  }));
+
+  const featuredCerts = certificationsWithStatus.filter(cert => cert.featured);
+  const otherCerts = certificationsWithStatus.filter(cert => !cert.featured);
+  const activeCertsCount = certificationsWithStatus.filter(c => c.status === 'valid' || c.status === 'permanent' || c.status === 'expiring').length;
+
+  const StatusBadge = ({ status }: { status: string }) => {
+    switch (status) {
+        case 'permanent':
+            return <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300 border-green-400/30">Permanent</Badge>;
+        case 'valid':
+            return <Badge className="bg-accent/20 text-accent border-accent/30">Valid</Badge>;
+        case 'expiring':
+            return <Badge className="bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300 border-yellow-400/30">Expiring Soon</Badge>;
+        case 'expired':
+            return <Badge variant="destructive">Expired</Badge>;
+        default:
+            return null;
     }
   };
 
@@ -154,7 +184,7 @@ const Certifications = () => {
                       </div>
                     </div>
                     <div className="absolute top-4 right-4">
-                      {getStatusBadge(cert.expiryDate)}
+                      <StatusBadge status={cert.status} />
                     </div>
                   </div>
                   
@@ -167,7 +197,7 @@ const Certifications = () => {
                     <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
                       <div className="flex items-center gap-1">
                         <Calendar className="w-4 h-4" />
-                        Issued: {cert.issueDate}
+                        Issued: {new Date(cert.issueDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
                       </div>
                       <div className="flex items-center gap-1">
                         <CheckCircle className="w-4 h-4" />
@@ -235,7 +265,7 @@ const Certifications = () => {
                       </div>
                     </div>
                     <div className="absolute top-2 right-2">
-                      {getStatusBadge(cert.expiryDate)}
+                      <StatusBadge status={cert.status} />
                     </div>
                   </div>
                   
@@ -293,7 +323,7 @@ const Certifications = () => {
               </div>
               <div className="glass-card p-6 rounded-xl text-center">
                 <div className="text-3xl font-bold text-accent mb-2">
-                  {certifications.filter(c => getStatusBadge(c.expiryDate).props.className.includes('accent')).length}
+                  {activeCertsCount}
                 </div>
                 <div className="text-muted-foreground">Active Certifications</div>
               </div>
@@ -311,4 +341,4 @@ const Certifications = () => {
   );
 };
 
-export default Certifications;
+export default CertificationsPage;
