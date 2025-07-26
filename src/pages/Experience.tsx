@@ -114,24 +114,25 @@ const Experience = () => {
           {/* Timeline */}
           <div className="relative">
             {/* Timeline line */}
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-primary"></div>
             
             <div className="space-y-12">
               {experiences.map((exp, index) => (
                 <div 
                   key={exp.id}
-                  className="relative flex gap-8 group"
+                  // CHANGE 1: Responsive gap between marker and card
+                  className="relative flex gap-4 lg:gap-8 group"
                   style={{ animationDelay: `${index * 200}ms` }}
                 >
+                  <div className="absolute left-3 top-0 bottom-0 w-0.5 bg-gradient-primary"></div>
                   {/* Timeline marker */}
                   <div className="relative z-10 flex-shrink-0">
-                    <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center text-2xl shadow-elegant">
-                      {exp.logo}
+                    <div className="w-6 h-6 bg-gradient-primary rounded-full flex items-center justify-center text-2xl shadow-elegant">
                     </div>
                   </div>
                   
                   {/* Content */}
-                  <div className="flex-1 glass-strong rounded-2xl p-8 hover-lift">
+                  {/* CHANGE 2: Responsive padding inside the card */}
+                  <div className="flex-1 glass-strong rounded-2xl p-6 sm:p-8 hover-lift">
                     {/* Header */}
                     <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-6">
                       <div className="space-y-2">
