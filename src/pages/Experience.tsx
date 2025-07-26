@@ -8,98 +8,27 @@ const Experience = () => {
   const experiences = [
     {
       id: 1,
-      company: "Tech Innovations Inc.",
+      company: "Nepal Telecom",
       logo: "🚀",
-      position: "Senior Full Stack Developer",
-      location: "San Francisco, CA",
-      period: "2022 - Present",
+      position: "Data and Technical Analyst Intern",
+      location: "Nepal",
+      period: "May 2025 - June 2025",
       type: "Full-time",
-      website: "https://techinnovations.com",
-      description: "Leading development of scalable web applications and mentoring junior developers in modern technologies.",
+      website: "https://ntc.net.np",
+      description: "Completed a hands-on internship at Nepal Telecom focused on FTTH networks, transmission systems, and network data analysis.",
+
       responsibilities: [
-        "Architected and developed 5+ full-stack applications using React, Node.js, and AWS",
-        "Led a team of 4 developers, conducting code reviews and establishing development standards",
-        "Improved application performance by 40% through optimization and best practices",
-        "Implemented CI/CD pipelines reducing deployment time by 60%",
-        "Mentored 6 junior developers in modern web development practices"
+      "Assisted in the installation and maintenance of FTTH networks, including on-site fiber patching and splicing.",
+      "Monitored the transmission network backbone, learning about switching, routing, and multiplexing.",
+      "Analyzed network performance data to support network optimization efforts.",
+      "Gained exposure to data center operations and supporting power systems."
       ],
-      technologies: ["React", "Node.js", "TypeScript", "AWS", "Docker", "PostgreSQL", "GraphQL"],
+
+      technologies: ["FTTH Networks", "Fiber Optics", "Network Switching & Routing", "Multiplexing", "Data Center Infrastructure"],
+
       achievements: [
-        "Employee of the Quarter Q3 2023",
-        "Successfully delivered 3 major projects ahead of schedule",
-        "Reduced bug reports by 35% through improved testing practices"
-      ]
-    },
-    {
-      id: 2,
-      company: "StartupXYZ",
-      logo: "💡",
-      position: "Full Stack Developer",
-      location: "Austin, TX",
-      period: "2020 - 2022",
-      type: "Full-time",
-      website: "https://startupxyz.com",
-      description: "Developed MVP products and scaled applications from 0 to 10k+ users in fast-paced startup environment.",
-      responsibilities: [
-        "Built and maintained 3 full-stack applications from conception to production",
-        "Collaborated with design team to implement pixel-perfect responsive interfaces",
-        "Integrated third-party APIs including payment processors and social media platforms",
-        "Optimized database queries improving response times by 50%",
-        "Participated in agile development cycles and sprint planning"
-      ],
-      technologies: ["React", "Express.js", "MongoDB", "Stripe", "Socket.io", "Redis", "Heroku"],
-      achievements: [
-        "Launched 2 successful products that gained 10k+ users each",
-        "Reduced server costs by 30% through optimization",
-        "Implemented real-time features increasing user engagement by 25%"
-      ]
-    },
-    {
-      id: 3,
-      company: "Digital Solutions Corp",
-      logo: "🏢",
-      position: "Frontend Developer",
-      location: "Remote",
-      period: "2019 - 2020",
-      type: "Contract",
-      website: "https://digitalsolutions.com",
-      description: "Specialized in creating responsive, accessible web applications for enterprise clients.",
-      responsibilities: [
-        "Developed responsive web applications for 8+ enterprise clients",
-        "Ensured cross-browser compatibility and accessibility standards (WCAG 2.1)",
-        "Collaborated with UX/UI designers to implement modern design systems",
-        "Performed code reviews and maintained high code quality standards",
-        "Created and maintained component libraries for team efficiency"
-      ],
-      technologies: ["React", "Vue.js", "SASS", "JavaScript", "Figma", "Storybook"],
-      achievements: [
-        "Improved website accessibility scores to 95%+ for all clients",
-        "Created reusable component library used across 5 projects",
-        "Reduced development time by 40% through code standardization"
-      ]
-    },
-    {
-      id: 4,
-      company: "CodeBootcamp Academy",
-      logo: "🎓",
-      position: "Web Development Instructor",
-      location: "Boston, MA",
-      period: "2018 - 2019",
-      type: "Part-time",
-      website: "https://codebootcamp.com",
-      description: "Taught full-stack web development to aspiring developers and created curriculum content.",
-      responsibilities: [
-        "Instructed 50+ students in HTML, CSS, JavaScript, and React fundamentals",
-        "Developed curriculum and hands-on projects for web development bootcamp",
-        "Mentored students through career transitions and job preparation",
-        "Conducted technical interviews and assessment evaluations",
-        "Organized coding workshops and guest speaker events"
-      ],
-      technologies: ["HTML", "CSS", "JavaScript", "React", "Node.js", "Git", "VS Code"],
-      achievements: [
-        "95% student satisfaction rate across all cohorts",
-        "Helped 30+ students secure developer positions",
-        "Created 10+ real-world projects for student portfolio development"
+      "Quickly developed a strong understanding of telecommunications infrastructure.",
+      "Praised for professionalism, enthusiasm, and effective teamwork."
       ]
     }
   ];
