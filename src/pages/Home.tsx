@@ -10,10 +10,9 @@ const Home = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const profileImages = [
-    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
-    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
-    "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face",
-    "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop&crop=face"
+    "images/slideshow-1.jpg",
+    "images/slideshow-2.jpg",
+    "images/slideshow-3.jpg"
   ];
 
   const contactLinks = [
@@ -66,7 +65,7 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Navigation />
       
       <section className="min-h-screen flex items-center justify-center px-4 pt-24 pb-16 lg:pt-0 lg:pb-0 relative overflow-hidden">
@@ -150,10 +149,10 @@ const Home = () => {
       </section>
 
       <section className="py-20 px-4 bg-muted/30">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-8xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* --- NEW IMAGE CAROUSEL --- */}
-            <div className="relative w-full h-96 flex items-center justify-center">
+            <div className="relative w-full flex items-center justify-center">
               {profileImages.map((src, index) => {
                 const isActive = index === currentImageIndex;
                 const distance = index - currentImageIndex;
@@ -165,12 +164,12 @@ const Home = () => {
                 let zIndex = 1;
 
                 if (isPrev) {
-                  transform = 'scale(0.9) translateX(-50%) translateZ(-100px) rotateY(30deg)';
+                  transform = 'scale(0.9) translateX(-20%) translateZ(-100px) rotateY(30deg)';
                   opacity = 0.6;
                   zIndex = 2;
                 }
                 if (isNext) {
-                  transform = 'scale(0.9) translateX(50%) translateZ(-100px) rotateY(-30deg)';
+                  transform = 'scale(0.9) translateX(20%) translateZ(-100px) rotateY(-30deg)';
                   opacity = 0.6;
                   zIndex = 2;
                 }
@@ -183,7 +182,7 @@ const Home = () => {
                 return (
                   <div
                     key={src}
-                    className="absolute w-64 h-80 transition-all duration-500 ease-in-out"
+                    className="absolute w-180 h-80 transition-all duration-500 ease-in-out"
                     style={{ transform, opacity, zIndex, transformStyle: 'preserve-3d' }}
                   >
                     <img src={src} alt={`About me ${index + 1}`} className="w-full h-full object-cover rounded-2xl shadow-2xl" />
@@ -222,7 +221,7 @@ const Home = () => {
           <div className="grid md:grid-cols-3 gap-8">
             {skillCategories.map((category, categoryIndex) => (
               <div key={category.title} className="glass-card rounded-xl p-8 border border-border/50 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105" style={{ animationDelay: `${categoryIndex * 200}ms` }}>
-                <h3 className="text-3xl font-semibold text-accent mb-8 text-center">{category.title}</h3>
+                <h3 className="text-3xl font-semibold text-primary mb-8 text-center">{category.title}</h3>
                 <div className="flex flex-wrap gap-3 justify-center">
                   {category.skills.map((skill, skillIndex) => (
                     <span key={skill} className="px-4 py-2 bg-card/80 text-foreground rounded-full text-sm font-medium border border-border/30 shadow-md hover:shadow-lg hover:scale-105 transition-all duration-200 flex items-center gap-3" style={{ animationDelay: `${skillIndex * 50}ms` }}>
@@ -273,19 +272,19 @@ const Home = () => {
           <div className="glass-card rounded-xl p-6 border border-border/50 shadow-lg">
             <h3 className="text-2xl font-bold text-gradient mb-6 flex items-center gap-2"><Target className="w-6 h-6 text-primary" />Core Skills</h3>
             <div className="space-y-3">
-              {coreSkills.map((skill) => (<div key={skill} className="flex items-center gap-2"><span className="w-2 h-2 bg-primary rounded-full"></span><span className="text-foreground">{skill}</span></div>))}
+              {coreSkills.map((skill) => (<div key={skill} className="flex items-center gap-2"><span className="w-2 h-2 bg-primary rounded-full"></span><span className="text-foreground text-l">{skill}</span></div>))}
             </div>
           </div>
           <div className="glass-card rounded-xl p-6 border border-border/50 shadow-lg">
             <h3 className="text-2xl font-bold text-gradient mb-6 flex items-center gap-2 "><Star className="w-6 h-6 text-primary" />Achievements</h3>
             <div className="space-y-3">
-              {achievements.map((achievement) => (<div key={achievement} className="flex items-center gap-2"><span className="w-2 h-2 bg-primary rounded-full"></span><span className="text-foreground">{achievement}</span></div>))}
+              {achievements.map((achievement) => (<div key={achievement} className="flex items-center gap-2"><span className="w-2 h-2 bg-primary rounded-full"></span><span className="text-foreground text-l">{achievement}</span></div>))}
             </div>
           </div>
           <div className="glass-card rounded-xl p-6 border border-border/50 shadow-lg">
             <h3 className="text-2xl font-bold text-gradient mb-6 flex items-center gap-2"><Award className="w-6 h-6 text-primary" />Certifications</h3>
             <div className="space-y-3">
-              {certifications.map((cert) => (<div key={cert} className="flex items-center gap-2"><span className="w-2 h-2 bg-primary rounded-full"></span><span className="text-foreground text-sm">{cert}</span></div>))}
+              {certifications.map((cert) => (<div key={cert} className="flex items-center gap-2"><span className="w-2 h-2 bg-primary rounded-full"></span><span className="text-foreground text-l">{cert}</span></div>))}
             </div>
           </div>
         </div>

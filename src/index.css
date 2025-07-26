@@ -323,3 +323,12 @@ All colors MUST be HSL.
 .switch input:checked ~ .slider .cloud {
   opacity: 1;
 }
+
+/* Add in global CSS (e.g., index.css or globals.css) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

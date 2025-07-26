@@ -105,7 +105,7 @@ const Navigation = () => {
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                   className="rounded-full hover:bg-accent/10 hover:shadow-lg hover:shadow-accent/20 transition-all duration-200"
                 >
-                  {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                  {isMobileMenuOpen ? <X className="h-10 w-10" /> : <Menu className="h-10 w-10" />}
                 </Button>
               </div>
             </div>

@@ -113,7 +113,7 @@ const Blog = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Featured Post */}
-          <section className="mb-16">
+          {/* <section className="mb-16">
             <div className="glass-strong rounded-2xl overflow-hidden hover-lift group">
               <div className="grid lg:grid-cols-2 gap-0">
                 <div className="relative overflow-hidden">
@@ -167,7 +167,7 @@ const Blog = () => {
                 </div>
               </div>
             </div>
-          </section>
+          </section> */}
 
           {/* Filter Categories */}
           <section className="mb-12">
