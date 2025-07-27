@@ -9,93 +9,18 @@ const CertificationsPage = () => {
   const certifications = [
     {
       id: 1,
-      title: "AWS Certified Solutions Architect - Professional",
-      issuer: "Amazon Web Services",
-      issueDate: "2023-03-15",
-      expiryDate: "2026-03-15",
-      credentialId: "AWS-PSA-12345",
+      title: "AGEN AI Using IBM Watsonx",
+      issuer: "IBM",
+      issueDate: "2023-06-14",
+      expiryDate: null,
+      credentialId: "ab69de9fca5d400a9ef4ab3045c7d01a",
       logo: "☁️",
-      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop",
+      image: "images/ibm-cert.png",
       description: "Advanced certification demonstrating expertise in designing distributed applications and systems on AWS platform.",
-      skills: ["Cloud Architecture", "AWS Services", "Security", "Cost Optimization", "High Availability"],
-      verificationUrl: "https://aws.amazon.com/verification/12345",
-      downloadUrl: "/certificates/aws-solutions-architect.pdf",
+      skills: ["Machine Learning","RAG Models", "AI Models Implementation","Cloud Architecture", "API Integration"],
+      verificationUrl: "https://courses.vit.skillsnetwork.site/certificates/ab69de9fca5d400a9ef4ab3045c7d01a",
+      downloadUrl: "https://courses.vit.skillsnetwork.site/certificates/ab69de9fca5d400a9ef4ab3045c7d01a",
       featured: true
-    },
-    {
-      id: 2,
-      title: "Google Cloud Professional Cloud Developer",
-      issuer: "Google Cloud",
-      issueDate: "2022-08-01",
-      expiryDate: "2024-08-01",
-      credentialId: "GCP-PCD-67890",
-      logo: "🔧",
-      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop",
-      description: "Professional-level certification for developing scalable and reliable applications on Google Cloud Platform.",
-      skills: ["GCP Services", "Application Development", "CI/CD", "Monitoring", "Security"],
-      verificationUrl: "https://cloud.google.com/certification/verify/67890",
-      downloadUrl: "/certificates/gcp-developer.pdf",
-      featured: true
-    },
-    {
-      id: 3,
-      title: "Certified Kubernetes Administrator (CKA)",
-      issuer: "Cloud Native Computing Foundation",
-      issueDate: "2022-06-20",
-      expiryDate: "2025-06-20",
-      credentialId: "CKA-54321",
-      logo: "⚓",
-      image: "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=600&h=400&fit=crop",
-      description: "Hands-on certification demonstrating skills in Kubernetes administration and troubleshooting.",
-      skills: ["Kubernetes", "Container Orchestration", "Cluster Management", "Troubleshooting"],
-      verificationUrl: "https://training.linuxfoundation.org/certification/verify/54321",
-      downloadUrl: "/certificates/cka.pdf",
-      featured: false
-    },
-    {
-      id: 4,
-      title: "MongoDB Certified Developer Associate",
-      issuer: "MongoDB Inc.",
-      issueDate: "2021-02-10",
-      expiryDate: "2024-02-10",
-      credentialId: "MDB-DEV-98765",
-      logo: "🍃",
-      image: "https://images.unsplash.com/photo-1558618069-fbd25c85cd64?w=600&h=400&fit=crop",
-      description: "Certification validating expertise in MongoDB database development and optimization.",
-      skills: ["MongoDB", "Database Design", "Aggregation", "Indexing", "Performance Tuning"],
-      verificationUrl: "https://university.mongodb.com/verify/98765",
-      downloadUrl: "/certificates/mongodb-developer.pdf",
-      featured: false
-    },
-    {
-      id: 5,
-      title: "Microsoft Azure Fundamentals",
-      issuer: "Microsoft",
-      issueDate: "2021-11-05",
-      expiryDate: null, // Use null for "Never expires"
-      credentialId: "AZ-900-11111",
-      logo: "🔷",
-      image: "https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=600&h=400&fit=crop",
-      description: "Foundational certification demonstrating knowledge of cloud services and Azure platform.",
-      skills: ["Azure Services", "Cloud Concepts", "Azure Pricing", "Support"],
-      verificationUrl: "https://docs.microsoft.com/en-us/learn/certifications/verify/11111",
-      downloadUrl: "/certificates/azure-fundamentals.pdf",
-      featured: false
-    },
-    {
-      id: 6,
-      title: "Certified Ethical Hacker (CEH)",
-      issuer: "EC-Council",
-      issueDate: "2020-09-18",
-      expiryDate: "2023-09-18",
-      credentialId: "CEH-22222",
-      logo: "🔒",
-      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&h=400&fit=crop",
-      description: "Certification demonstrating knowledge of information security and ethical hacking methodologies.",
-      skills: ["Penetration Testing", "Vulnerability Assessment", "Security Tools", "Risk Analysis"],
-      verificationUrl: "https://aspen.eccouncil.org/Verify/22222",
-      downloadUrl: "/certificates/ceh.pdf",
-      featured: false
     }
   ];
 
@@ -131,8 +56,8 @@ const CertificationsPage = () => {
       status: getCertificationStatus(cert.expiryDate)
   }));
 
-  const featuredCerts = certificationsWithStatus.filter(cert => cert.featured);
-  const otherCerts = certificationsWithStatus.filter(cert => !cert.featured);
+  //const featuredCerts = certificationsWithStatus.filter(cert => cert.featured);
+  const otherCerts = certificationsWithStatus.filter(cert => cert.featured);
   const activeCertsCount = certificationsWithStatus.filter(c => c.status === 'valid' || c.status === 'permanent' || c.status === 'expiring').length;
 
   const StatusBadge = ({ status }: { status: string }) => {
@@ -158,7 +83,7 @@ const CertificationsPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Featured Certifications */}
-          <section className="mb-16">
+          {/* <section className="mb-16">
             <h2 className="text-3xl font-bold text-foreground mb-8 flex items-center gap-2">
               <Award className="w-8 h-8 text-primary" />
               Featured Certifications
@@ -240,13 +165,13 @@ const CertificationsPage = () => {
                 </div>
               ))}
             </div>
-          </section>
+          </section> */}
 
           {/* Other Certifications */}
           <section>
-            <h2 className="text-3xl font-bold text-foreground mb-8">Other Certifications</h2>
+            {/* <h2 className="text-3xl font-bold text-foreground mb-8">Other Certifications</h2> */}
             
-            <div className="grid md:grid-cols-3 xl:grid-cols-4 gap-3">
+            <div className="grid md:grid-cols-3 xl:grid-cols-3 gap-5">
               {otherCerts.map((cert, index) => (
                 <div 
                   key={cert.id}
@@ -259,23 +184,23 @@ const CertificationsPage = () => {
                       alt={cert.title}
                       className="w-full h-32 object-cover transition-transform duration-300 group-hover:scale-105"
                     />
-                    <div className="absolute top-2 left-2">
+                    {/* <div className="absolute top-2 left-2">
                       <div className="w-8 h-8 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-sm border border-white/20">
                         {cert.logo}
                       </div>
-                    </div>
+                    </div> */}
                     <div className="absolute top-2 right-2">
                       <StatusBadge status={cert.status} />
                     </div>
                   </div>
                   
                   <div className="p-3">
-                    <h3 className="text-sm font-bold text-foreground mb-1 group-hover:text-primary transition-smooth line-clamp-2">
+                    <h3 className="text-lg font-bold text-foreground mb-1 group-hover:text-primary transition-smooth line-clamp-2">
                       {cert.title}
                     </h3>
-                    <p className="text-xs text-muted-foreground mb-2 font-medium">{cert.issuer}</p>
+                    <p className="text-sm text-muted-foreground mb-2 font-medium">{cert.issuer}</p>
                     
-                    <p className="text-xs text-muted-foreground mb-3 leading-relaxed line-clamp-2">
+                    <p className="text-sm text-muted-foreground mb-3 leading-relaxed line-clamp-2">
                       {cert.description}
                     </p>
                     
@@ -294,13 +219,13 @@ const CertificationsPage = () => {
                       </div>
                       
                       <div className="flex gap-1">
-                        <Button variant="ghost" size="sm" asChild className="flex-1 text-xs p-1">
+                        <Button variant="outline" size="sm" asChild className="flex-1 text-sm p-1">
                           <a href={cert.verificationUrl} target="_blank" rel="noopener noreferrer">
                             <ExternalLink className="w-3 h-3 mr-1" />
                             Verify
                           </a>
                         </Button>
-                        <Button variant="outline" size="sm" asChild className="flex-1 text-xs p-1">
+                        <Button variant="outline" size="sm" asChild className="flex-1 text-sm p-1">
                           <a href={cert.downloadUrl} target="_blank" rel="noopener noreferrer">
                             <Download className="w-3 h-3 mr-1" />
                             Download

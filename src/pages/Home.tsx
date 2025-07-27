@@ -83,7 +83,7 @@ const Home = () => {
             </div>
 
             <div className="text-center">
-              <h1 className="text-4xl sm:text-5xl font-semibold bg-gradient-to-r bg-clip-text text-transparent from-indigo-500 via-purple-500 to-indigo-500 animate-text">
+              <h1 className="text-4xl sm:text-5xl font-semibold bg-gradient-to-r bg-clip-text text-transparent from-indigo-500 via-purple-700 to-indigo-500 animate-text">
                 Saurabh Sharma
               </h1>
               <p className="text-lg sm:text-xl text-muted-foreground">
@@ -93,7 +93,7 @@ const Home = () => {
 
             <div className="flex flex-wrap justify-center gap-4">
               {contactLinks.map((link, index) => (
-                <Button key={link.label} variant="outline" asChild className="group glass-card hover-lift animation-delay-200 shadow-lg hover:shadow-xl" style={{ animationDelay: `${index * 100}ms` }}>
+                <Button key={link.label} variant="outline" asChild className="w-30 group glass-card hover-lift animation-delay-200 shadow-lg hover:shadow-xl" style={{ animationDelay: `${index * 100}ms` }}>
                   <a href={link.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                     {link.icon}
                     {link.label}
@@ -127,20 +127,20 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto sm:max-w-none">
-              <Button variant="outline" size="lg" asChild className="text-primary group sm:flex-1 h-12 px-6 transition-all duration-300 ease-spring hover:-translate-y-1 hover:shadow-lg">
-                <a href="/projects" className="flex items-center justify-center w-full">
-                  <span>View My Work</span>
-                  <ExternalLink className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </a>
-              </Button>
-              <Button variant="outline" size="lg" asChild className="text-primary group sm:flex-1 h-12 px-6 transition-all duration-300 ease-spring hover:-translate-y-1 hover:shadow-lg">
-                <a href="/contact" className="flex items-center justify-center w-full">
-                  <span>Get In Touch</span>
-                  <ExternalLink className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </a>
-              </Button>
-            </div>
+            <div className="flex flex-row gap-4 max-w-md mx-auto sm:max-w-none">
+  <Button variant="outline" size="lg" asChild className="text-primary group flex-1 h-12 px-6 transition-all duration-300 ease-spring hover:-translate-y-1 hover:shadow-lg">
+    <a href="/projects" className="flex items-center justify-center w-full">
+      <span>View My Work</span>
+      <ExternalLink className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+    </a>
+  </Button>
+  <Button variant="outline" size="lg" asChild className="text-primary group flex-1 h-12 px-6 transition-all duration-300 ease-spring hover:-translate-y-1 hover:shadow-lg">
+    <a href="/contact" className="flex items-center justify-center w-full">
+      <span>Get In Touch</span>
+      <ExternalLink className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+    </a>
+  </Button>
+</div>
           </div>
         </div>
 
