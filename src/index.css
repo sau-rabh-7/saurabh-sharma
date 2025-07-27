@@ -332,3 +332,12 @@ All colors MUST be HSL.
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+/* Default: circular */
+.clip-rounded {
+  clip-path: inset(0% round 50%);
+}
+
+/* On hover: rounded rectangle */
+.group:hover .clip-rounded {
+  clip-path: inset(0% round 1.5rem);
+}

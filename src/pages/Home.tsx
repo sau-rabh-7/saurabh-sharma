@@ -76,8 +76,8 @@ const Home = () => {
           {/* Order 1 on mobile, Order 1 on desktop (left side) */}
           <div className="space-y-8 animate-fade-in text-center order-1 lg:order-1">
             <div className="relative mx-auto w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 group">
-              <div className="absolute inset-0 bg-gradient-to-tr from-indigo-400 to-purple-500 rounded-full blur-3xl opacity-20 transition-all duration-200"></div>
-              <div className="relative w-full h-full rounded-full overflow-hidden bg-white/20 backdrop-blur-sm shadow-xl transition-all duration-200 ease-in-out hover:rounded-3xl hover:shadow-2xl hover:scale-105">
+              <div className="absolute inset-0 bg-gradient-to-tr from-indigo-400 to-purple-700 rounded-full blur-3xl opacity-60 transition-all duration-100"></div>
+              <div className="relative w-full h-full rounded-full overflow-hidden bg-white/20 backdrop-blur-lg shadow-2xl transition-all duration-500 hover:rounded-3xl hover:shadow-2xl">
                 <img src="images/bw-pfp.jpg" alt="Profile" className="w-full h-full object-cover" />
               </div>
             </div>
