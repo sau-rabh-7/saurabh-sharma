@@ -152,7 +152,26 @@ const Home = () => {
         <div className="max-w-8xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* --- NEW IMAGE CAROUSEL --- */}
-            <div className="relative w-full flex items-center justify-center">
+            <div 
+              className="relative w-full h-64 sm:h-80 lg:h-96 flex items-center justify-center touch-pan-x"
+              onTouchStart={(e) => {
+                const touchStartX = e.touches[0].clientX;
+                e.currentTarget.dataset.touchStartX = touchStartX.toString();
+              }}
+              onTouchEnd={(e) => {
+                const touchStartX = parseFloat(e.currentTarget.dataset.touchStartX || '0');
+                const touchEndX = e.changedTouches[0].clientX;
+                const diff = touchStartX - touchEndX;
+                
+                if (Math.abs(diff) > 50) {
+                  if (diff > 0) {
+                    nextImage();
+                  } else {
+                    prevImage();
+                  }
+                }
+              }}
+            >
               {profileImages.map((src, index) => {
                 const isActive = index === currentImageIndex;
                 const distance = index - currentImageIndex;
@@ -182,17 +201,17 @@ const Home = () => {
                 return (
                   <div
                     key={src}
-                    className="absolute w-180 h-80 transition-all duration-500 ease-in-out"
+                    className="absolute w-48 h-64 sm:w-64 sm:h-80 lg:w-80 lg:h-96 transition-all duration-500 ease-in-out"
                     style={{ transform, opacity, zIndex, transformStyle: 'preserve-3d' }}
                   >
                     <img src={src} alt={`About me ${index + 1}`} className="w-full h-full object-cover rounded-2xl shadow-2xl" />
                   </div>
                 );
               })}
-              <button onClick={prevImage} className="absolute left-0 z-10 p-2 bg-white/10 rounded-full backdrop-blur-sm hover:bg-white/20 transition-colors">
+              <button onClick={prevImage} className="absolute left-2 z-10 p-2 bg-white/10 rounded-full backdrop-blur-sm hover:bg-white/20 transition-colors hidden md:flex items-center justify-center">
                 <ChevronLeft className="w-6 h-6" />
               </button>
-              <button onClick={nextImage} className="absolute right-0 z-10 p-2 bg-white/10 rounded-full backdrop-blur-sm hover:bg-white/20 transition-colors">
+              <button onClick={nextImage} className="absolute right-2 z-10 p-2 bg-white/10 rounded-full backdrop-blur-sm hover:bg-white/20 transition-colors hidden md:flex items-center justify-center">
                 <ChevronRight className="w-6 h-6" />
               </button>
             </div>
