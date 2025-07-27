@@ -60,7 +60,7 @@ const Contact = () => {
             <div className="space-y-6">
               {/* Contact Details */}
               <section className="glass-card p-6 rounded-xl">
-                <h3 className="text-xl font-bold text-foreground mb-6">Contact Information</h3>
+                <h3 className="text-2xl font-bold text-foreground mb-6">Contact Information</h3>
                 
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
@@ -102,7 +102,7 @@ const Contact = () => {
 
               {/* Availability Status */}
               <section className="glass-card p-6 rounded-xl">
-                <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+                <h3 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
                   <Calendar className="w-5 h-5 text-primary" />
                   Availability
                 </h3>
@@ -115,10 +115,10 @@ const Contact = () => {
                   </div>
                   
                   <div>
-                    <h4 className="font-semibold text-foreground mb-2">Available for:</h4>
+                    <h4 className="font-semibold text-foreground mb-2 text-xl">Available for:</h4>
                     <ul className="space-y-1">
                       {contactInfo.availableFor.map((item) => (
-                        <li key={item} className="flex items-center gap-2 text-muted-foreground text-sm">
+                        <li key={item} className="flex items-center gap-2 text-muted-foreground">
                           <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
                           {item}
                         </li>
@@ -127,10 +127,10 @@ const Contact = () => {
                   </div>
                   
                   <div className="border-t border-border pt-4">
-                    <h4 className="font-semibold text-foreground mb-2">Working Hours</h4>
-                    <p className="text-sm text-muted-foreground">{workingHours.availability}</p>
-                    <p className="text-sm text-muted-foreground">{workingHours.timezone}</p>
-                    <p className="text-xs text-muted-foreground mt-1">{workingHours.responseTime}</p>
+                    <h4 className="font-semibold text-foreground mb-2 text-xl">Working Hours</h4>
+                    <p className="text-muted-foreground">{workingHours.availability}</p>
+                    <p className="text-muted-foreground">{workingHours.timezone}</p>
+                    <p className="text-muted-foreground mt-1">{workingHours.responseTime}</p>
                   </div>
                 </div>
               </section>
@@ -142,7 +142,7 @@ const Contact = () => {
                   {preferredRoles.map((role) => (
                     <div key={role} className="flex items-center gap-2 text-muted-foreground">
                       <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
-                      <span className="text-sm">{role}</span>
+                      <span>{role}</span>
                     </div>
                   ))}
                 </div>
@@ -152,11 +152,11 @@ const Contact = () => {
 
             {/* Right Side - Contact Form */}
             <div className="glass-card p-6 rounded-xl max-h-[600px] overflow-hidden">
-              <h3 className="text-xl font-bold text-foreground mb-6">Send Message</h3>
+              <h3 className="text-2xl font-bold text-foreground mb-6">Send Message</h3>
               <form className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">Name</label>
+                    <label className="block text-lg font-medium text-foreground mb-2">Name</label>
                     <input
                       type="text"
                       className="w-full px-3 py-2 bg-background/50 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
@@ -164,7 +164,7 @@ const Contact = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">Email</label>
+                    <label className="block text-lg font-medium text-foreground mb-2">Email</label>
                     <input
                       type="email"
                       className="w-full px-3 py-2 bg-background/50 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
@@ -173,7 +173,7 @@ const Contact = () => {
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">Subject</label>
+                  <label className="block text-lg font-medium text-foreground mb-2">Subject</label>
                   <input
                     type="text"
                     className="w-full px-3 py-2 bg-background/50 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
@@ -181,7 +181,7 @@ const Contact = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">Message</label>
+                  <label className="block text-lg font-medium text-foreground mb-2">Message</label>
                   <textarea
                     rows={6}
                     className="w-full px-3 py-2 bg-background/50 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
@@ -190,7 +190,7 @@ const Contact = () => {
                 </div>
                 <Button variant="hero" className="group w-full flex items-center transition-all duration-300 ease-spring hover:-translate-y-1 hover:shadow-lg">
                 <Send className="w-4 h-4 mr-2 text-primary transition-colors" />
-                <span>Send Message</span>
+                <span className="text-lg">Send Message</span>
                 <ChevronRight className="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </Button>
               </form>
