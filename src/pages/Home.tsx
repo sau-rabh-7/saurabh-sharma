@@ -150,10 +150,12 @@ const Home = () => {
 
       <section className="py-20 px-4 bg-muted/30">
         <div className="max-w-8xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* --- NEW IMAGE CAROUSEL --- */}
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
+          <div className="relative flex justify-center items-center">
+            
+            {/* 2. Carousel is smaller and centered in the wrapper */}
             <div 
-              className="relative w-full h-64 sm:h-80 lg:h-96 flex items-center justify-center touch-pan-x"
+              className="relative w-full max-w-lg aspect-video touch-pan-x"
               onTouchStart={(e) => {
                 const touchStartX = e.touches[0].clientX;
                 e.currentTarget.dataset.touchStartX = touchStartX.toString();
@@ -201,21 +203,26 @@ const Home = () => {
                 return (
                   <div
                     key={src}
-                    className="absolute w-48 h-64 sm:w-64 sm:h-80 lg:w-80 lg:h-96 transition-all duration-500 ease-in-out"
+                    className="absolute w-full h-full transition-all duration-500 ease-in-out"
                     style={{ transform, opacity, zIndex, transformStyle: 'preserve-3d' }}
                   >
                     <img src={src} alt={`About me ${index + 1}`} className="w-full h-full object-cover rounded-2xl shadow-2xl" />
                   </div>
                 );
               })}
-              <button onClick={prevImage} className="absolute left-2 z-10 p-2 bg-white/10 rounded-full backdrop-blur-sm hover:bg-white/20 transition-colors hidden md:flex items-center justify-center">
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-              <button onClick={nextImage} className="absolute right-2 z-10 p-2 bg-white/10 rounded-full backdrop-blur-sm hover:bg-white/20 transition-colors hidden md:flex items-center justify-center">
-                <ChevronRight className="w-6 h-6" />
-              </button>
             </div>
-            
+
+            {/* 3. Buttons are positioned to the edges of the wrapper */}
+            <button onClick={prevImage} className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white/40 border border-white/40 rounded-full backdrop-blur-sm hover:bg-white/40 transition-all hidden md:flex items-center justify-center">
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+
+            <button onClick={nextImage} className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white/40 border border-white/40 rounded-full backdrop-blur-sm hover:bg-white/40 transition-all hidden md:flex items-center justify-center">
+              <ChevronRight className="w-6 h-6" />
+            </button>
+
+          </div>
+              
             <div className="space-y-6">
               <div>
                 <h2 className="text-4xl font-bold text-gradient mb-4 flex items-center gap-2">
