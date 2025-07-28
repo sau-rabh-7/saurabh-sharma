@@ -30,7 +30,7 @@ const Home = () => {
 
   const education = [
     { degree: "Bachelor of Technology in Computer Science", institution: "Vellore Institute of Technology", period: "2022-2026", location: "Vellore, India", gpa: "8.96/10.0" },
-    { degree: "Higher Secondary Education", institution: "Mithila Institute of Technology", period: "2020-2022", location: "Janakpur, Nepal", gpa: "3.22/10.0" },
+    { degree: "Higher Secondary Education", institution: "Mithila Institute of Technology", period: "2020-2022", location: "Janakpur, Nepal", gpa: "3.22/4.0" },
     { degree: "Secondary Education Examination (SEE)", institution: "Daffodils Public School", period: "2006-2019", location: "Janakpur, Nepal", gpa: "3.95/4.0" },
   ];
 
