@@ -1,8 +1,9 @@
 import Navigation from "@/components/Layout/Navigation";
 import Footer from "@/components/Sections/Footer";
-import { ExternalLink, Github, Calendar, Users, Star } from "lucide-react";
+import { ExternalLink, Github, Calendar, Users, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 
 const Projects = () => {
   const projects = [
@@ -125,15 +126,15 @@ const Projects = () => {
                       
                       <div className="flex gap-2">
                         <Button variant="outline" size="sm" asChild className="flex-1 text-xs">
+                          <Link to={`/projects/${project.id}`}>
+                            <ArrowRight className="w-3 h-3 mr-1" />
+                            Details
+                          </Link>
+                        </Button>
+                        <Button variant="outline" size="sm" asChild className="flex-1 text-xs">
                           <a href={project.github} target="_blank" rel="noopener noreferrer">
                             <Github className="w-3 h-3 mr-1" />
                             Code
-                          </a>
-                        </Button>
-                        <Button variant="outline" size="sm" asChild className="flex-1 text-xs">
-                          <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="w-3 h-3 mr-1" />
-                            Demo
                           </a>
                         </Button>
                       </div>
