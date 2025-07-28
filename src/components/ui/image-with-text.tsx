@@ -30,7 +30,7 @@ export const ImageWithText = ({
   };
 
   return (
-    <div className="text-content">
+    <div className="text-content overflow-hidden">
       <img
         src={src}
         alt={alt}
@@ -41,7 +41,7 @@ export const ImageWithText = ({
           className
         )}
       />
-      <div className="text-foreground leading-relaxed">
+      <div className="text-foreground leading-relaxed overflow-hidden">
         {children}
       </div>
     </div>

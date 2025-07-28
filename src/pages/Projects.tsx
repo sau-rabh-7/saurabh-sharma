@@ -86,9 +86,10 @@ const Projects = () => {
           <section>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {projects.map((project, index) => (
-                <div 
+                <Link
+                  to={`/projects/${project.id}`}
                   key={project.id}
-                  className="glass-card rounded-lg overflow-hidden hover-lift group shadow-lg hover:shadow-xl"
+                  className="glass-card rounded-lg overflow-hidden hover-lift group shadow-lg hover:shadow-xl block"
                   style={{ animationDelay: `${index * 150}ms` }}
                 >
                   <div className="relative">
@@ -126,10 +127,10 @@ const Projects = () => {
                       
                       <div className="flex gap-2">
                         <Button variant="outline" size="sm" asChild className="flex-1 text-xs">
-                          <Link to={`/projects/${project.id}`}>
-                            <ArrowRight className="w-3 h-3 mr-1" />
-                            Details
-                          </Link>
+                          <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="w-3 h-3 mr-1" />
+                            Demo
+                          </a>
                         </Button>
                         <Button variant="outline" size="sm" asChild className="flex-1 text-xs">
                           <a href={project.github} target="_blank" rel="noopener noreferrer">
@@ -140,7 +141,7 @@ const Projects = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </section>
