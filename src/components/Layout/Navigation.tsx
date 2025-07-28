@@ -69,7 +69,7 @@ const Navigation = () => {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <h1 className="text-xl font-bold bg-gradient-to-r bg-clip-text text-transparent from-indigo-500 via-purple-700 to-indigo-500 animate-text">
+              <h1 className="text-xl font-bold bg-gradient-to-r bg-clip-text text-transparent from-fuchsia-500 to-indigo-500 to-indigo-500 animate-text">
                 Saurabh Sharma
               </h1>
             </div>
