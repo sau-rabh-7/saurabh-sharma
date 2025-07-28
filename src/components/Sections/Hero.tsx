@@ -88,13 +88,13 @@ const Hero = () => {
         {/* Right Content - Profile & Skills */}
         <div className="space-y-8">
           {/* Profile Image */}
-          <div className="relative mx-auto w-80 h-80 lg:w-96 lg:h-96">
-            <div className="absolute inset-0 bg-gradient-primary rounded-full blur-xl opacity-20"></div>
-            <div className="relative w-full h-full bg-muted rounded-full overflow-hidden border-4 border-primary/20 shadow-elegant">
+          <div className="relative mx-auto w-80 h-80 lg:w-96 lg:h-96 group">
+            <div className="absolute inset-0 bg-gradient-primary rounded-full blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-700"></div>
+            <div className="relative w-full h-full bg-muted overflow-hidden shadow-elegant blob-border group-hover:blob-animate">
               <img
                 src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
                 alt="Profile"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
             </div>
           </div>
