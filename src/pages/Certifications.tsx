@@ -9,7 +9,7 @@ const CertificationsPage = () => {
   const certifications = [
     {
       id: 1,
-      title: "AGEN AI Using IBM Watsonx",
+      title: "GEN AI Using IBM Watsonx",
       issuer: "IBM",
       issueDate: "2023-06-14",
       expiryDate: null,

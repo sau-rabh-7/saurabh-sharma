@@ -13,7 +13,7 @@ const Navigation = () => {
     { label: "Experience", href: "/experience" },
     { label: "Papers", href: "/papers" },
     { label: "Certifications", href: "/certifications" },
-    { label: "Blog", href: "/blog" },
+    // { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/contact" },
   ];
 
@@ -101,11 +101,11 @@ const Navigation = () => {
               <div className="md:hidden">
                 <Button
                   variant="ghost"
-                  size="icon"
+                  //size="icon"
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                  className="rounded-full hover:bg-accent/10 hover:shadow-lg hover:shadow-accent/20 transition-all duration-200"
+                  className="h-10 w-10 rounded-full hover:bg-accent/10 hover:shadow-lg hover:shadow-accent/20 transition-all duration-200"
                 >
-                  {isMobileMenuOpen ? <X className="h-10 w-10" /> : <Menu className="h-10 w-10" />}
+                  {isMobileMenuOpen ? <X className="scale-[1.6]"/> : <Menu className="scale-[1.6]"/>}
                 </Button>
               </div>
             </div>
