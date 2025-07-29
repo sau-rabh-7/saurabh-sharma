@@ -71,7 +71,30 @@ On the administrative side, the platform offers a powerful dashboard for invento
       {
         title: "React Product Component",
         language: "typescript",
-        code: "interface Product {\n  id: string;\n  name: string;\n  price: number;\n  image: string;\n  description: string;\n}\n\nconst ProductCard: React.FC<{ product: Product }> = ({ product }) => {\n  const { addToCart } = useCart();\n  \n  return (\n    <Card className=\"product-card\">\n      <img src={product.image} alt={product.name} />\n      <CardContent>\n        <h3>{product.name}</h3>\n        <p>${product.price}</p>\n        <Button onClick={() => addToCart(product)}>\n          Add to Cart\n        </Button>\n      </CardContent>\n    </Card>\n  );\n};"
+        code: `interface Product {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+  description: string;
+}
+
+const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
+  const { addToCart } = useCart();
+  
+  return (
+    <Card className="product-card">
+      <img src={product.image} alt={product.name} />
+      <CardContent>
+        <h3>{product.name}</h3>
+        <p>$\{product.price}</p>
+        <Button onClick={() => addToCart(product)}>
+          Add to Cart
+        </Button>
+      </CardContent>
+    </Card>
+  );
+};`
       }
     ],
     additionalImages: [
