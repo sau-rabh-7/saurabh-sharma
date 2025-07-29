@@ -11,7 +11,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // Import your pages
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
-import ProjectDetail from "./pages/ProjectDetail";
+import ECommercePlatform from "./pages/projects/ECommercePlatform";
+import AITaskManager from "./pages/projects/AITaskManager";
+import BlockchainWallet from "./pages/projects/BlockchainWallet";
 import Experience from "./pages/Experience";
 import Papers from "./pages/Papers";
 import Certifications from "./pages/Certifications";
@@ -41,7 +43,9 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/projects" element={<Projects />} />
-              <Route path="/projects/:id" element={<ProjectDetail />} />
+              <Route path="/projects/ecommerce-platform" element={<ECommercePlatform />} />
+              <Route path="/projects/ai-task-manager" element={<AITaskManager />} />
+              <Route path="/projects/blockchain-wallet" element={<BlockchainWallet />} />
               <Route path="/experience" element={<Experience />} />
               <Route path="/papers" element={<Papers />} />
               <Route path="/certifications" element={<Certifications />} />

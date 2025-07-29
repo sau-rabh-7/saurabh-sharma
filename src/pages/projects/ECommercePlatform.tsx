@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ArrowLeft, Github, ExternalLink, Calendar, Users } from "lucide-react";
 import Navigation from "@/components/Layout/Navigation";
 import Footer from "@/components/Sections/Footer";
@@ -8,32 +8,111 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { CodeShowcase } from "@/components/ui/code-showcase";
 import { ImageWithText } from "@/components/ui/image-with-text";
-import { getProjectById } from "@/data/projects";
 
-const ProjectDetail = () => {
-  const { id } = useParams();
+const ECommercePlatform = () => {
+  const project = {
+    title: "E-Commerce Platform",
+    description: "A full-stack e-commerce solution with React, Node.js, and MongoDB",
+    longDescription: `This comprehensive e-commerce platform demonstrates modern web development practices with a focus on user experience and scalability. The application features a responsive design that works seamlessly across all devices.
 
-  const project = getProjectById(id as string);
+The backend architecture utilizes Node.js with Express.js, providing RESTful APIs for product management, user authentication, and order processing. MongoDB serves as the primary database, offering flexible document storage for product catalogs and user data.
 
-  if (!project) {
-    return (
-      <div className="min-h-screen bg-background">
-        <Navigation />
-        <main className="pt-24 pb-16">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <h1 className="text-4xl font-bold mb-4">Project Not Found</h1>
-              <p className="text-muted-foreground mb-8">The project you're looking for doesn't exist.</p>
-              <Button asChild>
-                <Link to="/projects">Back to Projects</Link>
-              </Button>
-            </div>
-          </div>
-        </main>
-        <Footer />
-      </div>
-    );
+Advanced features include real-time inventory management, secure payment processing through Stripe integration, and an admin dashboard for comprehensive store management. The platform also implements Redis caching for improved performance and JWT-based authentication for secure user sessions.`,
+    year: "2024",
+    team: "Solo Project",
+    status: "Completed",
+    techStack: ["React", "Node.js", "MongoDB", "Express", "Stripe", "JWT", "Tailwind CSS"],
+    githubUrl: "https://github.com/example/ecommerce-platform",
+    demoUrl: "https://ecommerce-demo.example.com",
+    screenshots: [
+      "/public/images/slideshow-1.jpg",
+      "/public/images/slideshow-2.jpg",
+      "/public/images/slideshow-3.jpg"
+    ],
+    additionalImages: [
+      {
+        src: "/public/images/slideshow-1.jpg",
+        alt: "Product catalog interface"
+      },
+      {
+        src: "/public/images/slideshow-2.jpg",
+        alt: "Shopping cart and checkout"
+      }
+    ],
+    codeExamples: [
+      {
+        title: "Product API Endpoint",
+        language: "javascript",
+        code: `// Product controller with MongoDB integration
+const getProducts = async (req, res) => {
+  try {
+    const { page = 1, limit = 10, category, search } = req.query;
+    
+    let query = {};
+    if (category) query.category = category;
+    if (search) query.name = { $regex: search, $options: 'i' };
+    
+    const products = await Product.find(query)
+      .limit(limit * 1)
+      .skip((page - 1) * limit)
+      .sort({ createdAt: -1 });
+      
+    const total = await Product.countDocuments(query);
+    
+    res.json({
+      products,
+      totalPages: Math.ceil(total / limit),
+      currentPage: page
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
+};`
+      },
+      {
+        title: "React Product Component",
+        language: "tsx",
+        code: `// Product card component with add to cart functionality
+const ProductCard = ({ product }) => {
+  const { addToCart } = useCart();
+  const [isLoading, setIsLoading] = useState(false);
+  
+  const handleAddToCart = async () => {
+    setIsLoading(true);
+    try {
+      await addToCart(product);
+      toast.success('Product added to cart!');
+    } catch (error) {
+      toast.error('Failed to add product');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  
+  return (
+    <div className="glass-card rounded-lg overflow-hidden">
+      <img 
+        src={product.image} 
+        alt={product.name}
+        className="w-full h-48 object-cover"
+      />
+      <div className="p-4">
+        <h3 className="font-bold text-lg">{product.name}</h3>
+        <p className="text-muted-foreground">$\{product.price}</p>
+        <Button 
+          onClick={handleAddToCart}
+          disabled={isLoading}
+          className="w-full mt-4"
+        >
+          {isLoading ? 'Adding...' : 'Add to Cart'}
+        </Button>
+      </div>
+    </div>
+  );
+};`
+      }
+    ]
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -188,4 +267,4 @@ const ProjectDetail = () => {
   );
 };
 
-export default ProjectDetail;
+export default ECommercePlatform;

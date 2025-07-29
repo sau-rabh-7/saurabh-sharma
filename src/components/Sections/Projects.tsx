@@ -4,12 +4,40 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
-import { Project, getFeaturedProjects } from "@/data/projects";
 
 const Projects = () => {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
-  const projects = getFeaturedProjects();
+  const projects = [
+    {
+      id: "ecommerce-platform",
+      title: "E-Commerce Platform",
+      description: "A full-stack e-commerce solution with React, Node.js, and MongoDB",
+      image: "/public/images/slideshow-1.jpg",
+      status: "Completed",
+      techStack: ["React", "Node.js", "MongoDB", "Express", "Stripe"],
+      githubUrl: "https://github.com/example/ecommerce-platform",
+      demoUrl: "https://ecommerce-demo.example.com"
+    },
+    {
+      id: "ai-task-manager",
+      title: "AI-Powered Task Manager",
+      description: "Smart task management with AI prioritization and natural language processing",
+      image: "/public/images/slideshow-2.jpg",
+      status: "In Progress",
+      techStack: ["React", "Python", "FastAPI", "PostgreSQL", "OpenAI API"],
+      githubUrl: "https://github.com/example/ai-task-manager",
+      demoUrl: "https://ai-tasks-demo.example.com"
+    },
+    {
+      id: "blockchain-wallet",
+      title: "Blockchain Wallet",
+      description: "Secure cryptocurrency wallet with multi-chain support and DeFi integration",
+      image: "/public/images/slideshow-3.jpg",
+      status: "Completed",
+      techStack: ["React", "Web3.js", "Ethers.js", "Node.js", "TypeScript"],
+      githubUrl: "https://github.com/example/blockchain-wallet",
+      demoUrl: "https://crypto-wallet-demo.example.com"
+    }
+  ];
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -19,7 +47,7 @@ const Projects = () => {
     }
   };
 
-  const ProjectCard = ({ project }: { project: Project }) => (
+  const ProjectCard = ({ project }: { project: any }) => (
     <Link
       to={`/projects/${project.id}`}
       className="glass-card rounded-lg overflow-hidden hover-lift group shadow-lg hover:shadow-xl block"
@@ -92,76 +120,6 @@ const Projects = () => {
     </Link>
   );
 
-  const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => void }) => (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-      <div className="bg-background rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-elegant">
-        <div className="relative">
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-64 object-cover rounded-t-lg"
-          />
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 w-8 h-8 bg-black/50 text-white rounded-full flex items-center justify-center hover:bg-black/70 transition-smooth"
-          >
-            ×
-          </button>
-        </div>
-        
-        <div className="p-8">
-          <div className="flex items-start justify-between mb-6">
-            <div>
-              <h2 className="text-3xl font-bold mb-2">{project.title}</h2>
-              <p className="text-muted-foreground">{project.description}</p>
-            </div>
-          </div>
-
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-lg font-semibold mb-3">Tech Stack</h3>
-              <div className="flex flex-wrap gap-2">
-                {project.techStack.map((tech) => (
-                  <Badge key={tech} variant="tech" className="text-sm">
-                    {tech}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-
-            <div className="flex gap-4">
-              {project.githubUrl && (
-                <Button variant="outline" asChild>
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2"
-                  >
-                    <Github className="w-4 h-4" />
-                    View Code
-                  </a>
-                </Button>
-              )}
-              {project.demoUrl && (
-                <Button variant="hero" asChild>
-                  <a
-                    href={project.demoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                    Live Demo
-                  </a>
-                </Button>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
 
   return (
     <section id="projects" className="py-20 px-4">
@@ -180,13 +138,6 @@ const Projects = () => {
           ))}
         </div>
 
-        {/* Project Detail Modal */}
-        {selectedProject && (
-          <ProjectModal
-            project={selectedProject}
-            onClose={() => setSelectedProject(null)}
-          />
-        )}
       </div>
     </section>
   );
