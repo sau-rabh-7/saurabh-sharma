@@ -3,6 +3,7 @@ import { ExternalLink, Github, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 import { Project, getFeaturedProjects } from "@/data/projects";
 
 const Projects = () => {
@@ -10,45 +11,85 @@ const Projects = () => {
 
   const projects = getFeaturedProjects();
 
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "Completed": return "bg-accent/20 text-accent border-accent/30";
+      case "In Progress": return "bg-primary/20 text-primary border-primary/30";
+      default: return "bg-muted/20 text-muted-foreground border-muted/30";
+    }
+  };
+
   const ProjectCard = ({ project }: { project: Project }) => (
-    <Card 
-      className="group cursor-pointer transition-spring hover:shadow-elegant hover:-translate-y-2"
-      onClick={() => setSelectedProject(project)}
+    <Link
+      to={`/projects/${project.id}`}
+      className="glass-card rounded-lg overflow-hidden hover-lift group shadow-lg hover:shadow-xl block"
     >
-      <CardHeader className="p-0">
-        <div className="relative overflow-hidden rounded-t-lg">
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-48 object-cover transition-smooth group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-smooth" />
-          <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-smooth">
-            <ArrowRight className="w-6 h-6 text-white" />
-          </div>
+      <div className="relative">
+        <img
+          src={project.image}
+          alt={project.title}
+          className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+        />
+        <Badge className={`absolute top-3 right-3 text-xs ${getStatusColor(project.status)}`}>
+          {project.status}
+        </Badge>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-smooth" />
+        <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-smooth">
+          <ArrowRight className="w-6 h-6 text-white" />
         </div>
-      </CardHeader>
-      <CardContent className="p-6">
-        <CardTitle className="mb-2 group-hover:text-primary transition-smooth">
+      </div>
+      
+      <div className="p-6">
+        <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-smooth">
           {project.title}
-        </CardTitle>
-        <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
+        </h3>
+        <p className="text-muted-foreground mb-4 text-sm leading-relaxed line-clamp-3">
           {project.description}
         </p>
-        <div className="flex flex-wrap gap-2">
-          {project.techStack.slice(0, 3).map((tech) => (
-            <Badge key={tech} variant="secondary" className="text-xs">
-              {tech}
-            </Badge>
-          ))}
-          {project.techStack.length > 3 && (
-            <Badge variant="outline" className="text-xs">
-              +{project.techStack.length - 3} more
-            </Badge>
-          )}
+        
+        <div className="space-y-3">
+          <div className="flex flex-wrap gap-2">
+            {project.techStack.slice(0, 3).map((tech) => (
+              <Badge key={tech} variant="outline" className="text-xs">
+                {tech}
+              </Badge>
+            ))}
+            {project.techStack.length > 3 && (
+              <Badge variant="outline" className="text-xs">
+                +{project.techStack.length - 3} more
+              </Badge>
+            )}
+          </div>
+          
+          <div className="flex gap-2">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              asChild 
+              className="flex-1 text-xs"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="w-3 h-3 mr-1" />
+                Demo
+              </a>
+            </Button>
+            <Button 
+              variant="outline" 
+              size="sm" 
+              asChild 
+              className="flex-1 text-xs"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                <Github className="w-3 h-3 mr-1" />
+                Code
+              </a>
+            </Button>
+          </div>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </Link>
   );
 
   const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => void }) => (
