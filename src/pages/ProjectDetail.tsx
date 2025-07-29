@@ -8,77 +8,32 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { CodeShowcase } from "@/components/ui/code-showcase";
 import { ImageWithText } from "@/components/ui/image-with-text";
+import { getProjectById } from "@/data/projects";
 
 const ProjectDetail = () => {
   const { id } = useParams();
 
-  // Mock data - in real app, fetch based on id
-  const projectData = {
-    id: 1,
-    title: "E-Commerce Platform",
-    description: "A comprehensive e-commerce solution built with modern technologies.",
-    longDescription: `This full-stack e-commerce platform represents a complete solution for online retail businesses. 
-    Built with React and Node.js, it features a modern, responsive design that works seamlessly across all devices.
-    
-    The platform includes comprehensive user management with secure authentication, a dynamic product catalog with advanced filtering and search capabilities, a robust shopping cart system, and secure payment processing through Stripe integration.
-    
-    On the administrative side, the platform offers a powerful dashboard for inventory management, order tracking, sales analytics, and customer relationship management. The system is designed to scale with growing businesses and handle high traffic loads efficiently.`,
-    
-    screenshots: [
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&h=600&fit=crop"
-    ],
-    
-    tech: ["React", "Node.js", "MongoDB", "Stripe", "JWT", "Tailwind CSS", "Express", "Redis"],
-    github: "https://github.com/username/ecommerce",
-    demo: "https://ecommerce-demo.com",
-    status: "Completed",
-    year: "2024",
-    team: "Solo Project",
-    
-    codeExamples: [
-      {
-        title: "User Authentication Middleware",
-        language: "javascript",
-        code: `const authenticateToken = (req, res, next) => {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
+  const project = getProjectById(id as string);
 
-  if (!token) {
-    return res.status(401).json({ message: 'Access token required' });
+  if (!project) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navigation />
+        <main className="pt-24 pb-16">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <h1 className="text-4xl font-bold mb-4">Project Not Found</h1>
+              <p className="text-muted-foreground mb-8">The project you're looking for doesn't exist.</p>
+              <Button asChild>
+                <Link to="/projects">Back to Projects</Link>
+              </Button>
+            </div>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
   }
-
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-    if (err) {
-      return res.status(403).json({ message: 'Invalid token' });
-    }
-    req.user = user;
-    next();
-  });
-};`
-      },
-      {
-        title: "React Product Component",
-        language: "typescript",
-        code: "interface Product {\n  id: string;\n  name: string;\n  price: number;\n  image: string;\n  description: string;\n}\n\nconst ProductCard: React.FC<{ product: Product }> = ({ product }) => {\n  const { addToCart } = useCart();\n  \n  return (\n    <Card className=\"product-card\">\n      <img src={product.image} alt={product.name} />\n      <CardContent>\n        <h3>{product.name}</h3>\n        <p>${product.price}</p>\n        <Button onClick={() => addToCart(product)}>\n          Add to Cart\n        </Button>\n      </CardContent>\n    </Card>\n  );\n};"
-      }
-    ],
-    
-    additionalImages: [
-      {
-        src: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=300&fit=crop",
-        alt: "Mobile responsive design"
-      },
-      {
-        src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop",
-        alt: "Admin dashboard"
-      }
-    ]
-  };
-
-  const project = projectData;
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -116,13 +71,13 @@ const ProjectDetail = () => {
               </div>
               <div className="flex gap-3">
                 <Button variant="outline" asChild>
-                  <a href={project.github} target="_blank" rel="noopener noreferrer">
+                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                     <Github className="w-4 h-4 mr-2" />
                     View Code
                   </a>
                 </Button>
                 <Button variant="hero" asChild>
-                  <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                  <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
                     <ExternalLink className="w-4 h-4 mr-2" />
                     Live Demo
                   </a>
@@ -147,7 +102,7 @@ const ProjectDetail = () => {
 
             {/* Tech Stack */}
             <div className="flex flex-wrap gap-2">
-              {project.tech.map((tech) => (
+              {project.techStack.map((tech) => (
                 <Badge key={tech} variant="tech">
                   {tech}
                 </Badge>

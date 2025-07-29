@@ -3,77 +3,12 @@ import { ExternalLink, Github, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-
-interface Project {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  techStack: string[];
-  githubUrl?: string;
-  demoUrl?: string;
-  featured?: boolean;
-}
+import { Project, getFeaturedProjects } from "@/data/projects";
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const projects: Project[] = [
-    {
-      id: "ecommerce-platform",
-      title: "E-Commerce Platform",
-      description: "Full-stack e-commerce solution with React, Node.js, and MongoDB. Features include user authentication, payment processing, and admin dashboard.",
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
-      techStack: ["React", "Node.js", "MongoDB", "Stripe", "JWT", "Tailwind CSS"],
-      githubUrl: "https://github.com/username/ecommerce",
-      demoUrl: "https://ecommerce-demo.com",
-      featured: true,
-    },
-    {
-      id: "ai-chatbot",
-      title: "AI-Powered Chatbot",
-      description: "Intelligent chatbot using OpenAI API with natural language processing capabilities and context awareness.",
-      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop",
-      techStack: ["Python", "OpenAI API", "FastAPI", "React", "WebSocket"],
-      githubUrl: "https://github.com/username/ai-chatbot",
-      demoUrl: "https://chatbot-demo.com",
-      featured: true,
-    },
-    {
-      id: "task-manager",
-      title: "Task Management App",
-      description: "Collaborative task management tool with real-time updates, team collaboration, and progress tracking.",
-      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop",
-      techStack: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Socket.io"],
-      githubUrl: "https://github.com/username/task-manager",
-      featured: true,
-    },
-    {
-      id: "weather-app",
-      title: "Weather Dashboard",
-      description: "Modern weather application with location-based forecasts and interactive maps.",
-      image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=600&h=400&fit=crop",
-      techStack: ["React", "Weather API", "Charts.js", "Geolocation"],
-      githubUrl: "https://github.com/username/weather-app",
-      demoUrl: "https://weather-demo.com",
-    },
-    {
-      id: "portfolio-cms",
-      title: "Portfolio CMS",
-      description: "Content management system for portfolios with drag-and-drop interface and dynamic content updates.",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
-      techStack: ["Vue.js", "Node.js", "Express", "MongoDB", "Cloudinary"],
-      githubUrl: "https://github.com/username/portfolio-cms",
-    },
-    {
-      id: "blockchain-voting",
-      title: "Blockchain Voting System",
-      description: "Secure voting platform using blockchain technology for transparency and immutability.",
-      image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&h=400&fit=crop",
-      techStack: ["Solidity", "Web3.js", "React", "Ethereum", "MetaMask"],
-      githubUrl: "https://github.com/username/blockchain-voting",
-    },
-  ];
+  const projects = getFeaturedProjects();
 
   const ProjectCard = ({ project }: { project: Project }) => (
     <Card 
