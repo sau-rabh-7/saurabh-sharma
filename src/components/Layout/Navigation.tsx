@@ -114,20 +114,24 @@ const Navigation = () => {
       </GlassSurface>
 
       {/* Mobile Navigation */}
-      <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-        isMobileMenuOpen 
-          ? 'max-h-96 opacity-100' 
-          : 'max-h-0 opacity-0'
+      <div className={`md:hidden absolute top-full left-0 right-0 transform transition-transform duration-300 ease-in-out ${
+        isMobileMenuOpen ? 'translate-y-0' : '-translate-y-full'
       }`}>
         <GlassSurface
           width="100%"
           height="auto"
           borderRadius={0}
           className="border-b border-border/20" 
+          displace={0.5}
+          distortionScale={-150}
+          redOffset={5}
+          greenOffset={15}
+          blueOffset={25}
+          brightness={60}
+          opacity={0.9}
+          mixBlendMode="screen"
         >
-          <div className={`px-2 pt-2 pb-3 space-y-1 w-full transform transition-transform duration-300 ease-in-out ${
-            isMobileMenuOpen ? 'translate-y-0' : '-translate-y-4'
-          }`}>
+          <div className="px-2 pt-2 pb-3 space-y-1 w-full">
             {navItems.map((item) => (
               <a
                 key={item.label}
