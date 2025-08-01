@@ -1,10 +1,11 @@
 import Navigation from "@/components/Layout/Navigation";
 import Footer from "@/components/Sections/Footer";
-import { Github, Linkedin, Mail, Download, ExternalLink, Star, MapPin, GraduationCap, Calendar, Award, Target, User, ChevronLeft, ChevronRight } from "lucide-react";
+import { Github, Linkedin, Mail, Download, ExternalLink, Star, MapPin, GraduationCap, Calendar, Award, Target, User, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import DecryptedText from "@/components/ui/DecryptedText";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -43,10 +44,45 @@ const Home = () => {
     return iconMap[skill] || 'devicon-plain';
   };
 
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "Completed": return "bg-accent/20 text-accent border-accent/30";
+      case "In Progress": return "bg-primary/20 text-primary border-primary/30";
+      default: return "bg-muted/20 text-muted-foreground border-muted/30";
+    }
+  };
+
   const featuredProjects = [
-    { title: "AI-Powered Analytics Platform", description: "Real-time data processing and machine learning insights for enterprise clients.", tech: ["React", "Python", "AWS", "TensorFlow"], image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop", href: "https://github.com/username/ai-analytics" },
-    { title: "E-Commerce Microservices", description: "Scalable microservices architecture handling millions of transactions.", tech: ["Node.js", "Docker", "MongoDB", "Redis"], image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop", href: "https://github.com/username/ecommerce" },
-    { title: "Blockchain Voting System", description: "Secure and transparent voting platform using blockchain technology.", tech: ["Solidity", "Web3.js", "React", "Ethereum"], image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&h=400&fit=crop", href: "https://github.com/username/blockchain-voting" },
+    {
+      id: "ecommerce-platform",
+      title: "E-Commerce Platform",
+      description: "A full-stack e-commerce solution with React, Node.js, and MongoDB",
+      image: "/images/slideshow-1.jpg",
+      status: "Completed",
+      techStack: ["React", "Node.js", "MongoDB", "Express", "Stripe"],
+      githubUrl: "https://github.com/example/ecommerce-platform",
+      demoUrl: "https://ecommerce-demo.example.com"
+    },
+    {
+      id: "ai-task-manager",
+      title: "AI-Powered Task Manager",
+      description: "Smart task management with AI prioritization and natural language processing",
+      image: "/images/slideshow-2.jpg",
+      status: "In Progress",
+      techStack: ["React", "Python", "FastAPI", "PostgreSQL", "OpenAI API"],
+      githubUrl: "https://github.com/example/ai-task-manager",
+      demoUrl: "https://ai-tasks-demo.example.com"
+    },
+    {
+      id: "blockchain-wallet",
+      title: "Blockchain Wallet",
+      description: "Secure cryptocurrency wallet with multi-chain support and DeFi integration",
+      image: "/images/slideshow-3.jpg",
+      status: "Completed",
+      techStack: ["React", "Web3.js", "Ethers.js", "Node.js", "TypeScript"],
+      githubUrl: "https://github.com/example/blockchain-wallet",
+      demoUrl: "https://crypto-wallet-demo.example.com"
+    }
   ];
 
   useEffect(() => {
@@ -322,29 +358,79 @@ const Home = () => {
             <h2 className="text-4xl font-bold text-gradient mb-4 flex items-center justify-center gap-2"><Star className="w-8 h-8 text-primary" />Featured Projects</h2>
             <p className="text-xl text-muted-foreground">Showcasing my best work and innovative solutions</p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredProjects.map((project, index) => (
-              <div key={index} className="group glass-card rounded-xl overflow-hidden border border-border/50 shadow-lg hover:shadow-2xl transition-all duration-200 hover:scale-105 cursor-pointer" style={{ animationDelay: `${index * 200}ms` }}>
-                <div className="relative overflow-hidden">
-                  <img src={project.image} alt={project.title} className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-smooth"></div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-smooth">{project.title}</h3>
-                  <p className="text-muted-foreground mb-4 leading-relaxed">{project.description}</p>
-                  <div className="space-y-4">
-                    <div className="flex flex-wrap gap-2">
-                      {project.tech.map((tech) => (<Badge key={tech} variant="secondary" className="bg-primary/10 text-primary border-primary/20">{tech}</Badge>))}
-                    </div>
-                    <Button variant="outline" asChild className="w-full hover-glow shadow-md">
-                      <a href={project.href} className="flex items-center justify-center">
-                        View Project
-                        <ExternalLink className="w-4 h-4 ml-2" />
-                      </a>
-                    </Button>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuredProjects.map((project) => (
+              <Link
+                key={project.id}
+                to={`/projects/${project.id}`}
+                className="glass-card rounded-lg overflow-hidden hover-lift group shadow-lg hover:shadow-xl block"
+              >
+                <div className="relative">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <Badge className={`absolute top-3 right-3 text-xs ${getStatusColor(project.status)}`}>
+                    {project.status}
+                  </Badge>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-smooth" />
+                  <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-smooth">
+                    <ArrowRight className="w-6 h-6 text-white" />
                   </div>
                 </div>
-              </div>
+                
+                <div className="p-6">
+                  <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-smooth">
+                    {project.title}
+                  </h3>
+                  <p className="text-muted-foreground mb-4 text-sm leading-relaxed line-clamp-3">
+                    {project.description}
+                  </p>
+                  
+                  <div className="space-y-3">
+                    <div className="flex flex-wrap gap-2">
+                      {project.techStack.slice(0, 3).map((tech) => (
+                        <Badge key={tech} variant="outline" className="text-xs">
+                          {tech}
+                        </Badge>
+                      ))}
+                      {project.techStack.length > 3 && (
+                        <Badge variant="outline" className="text-xs">
+                          +{project.techStack.length - 3} more
+                        </Badge>
+                      )}
+                    </div>
+                    
+                    <div className="flex gap-2">
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        asChild 
+                        className="flex-1 text-xs"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="w-3 h-3 mr-1" />
+                          Demo
+                        </a>
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        asChild 
+                        className="flex-1 text-xs"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                          <Github className="w-3 h-3 mr-1" />
+                          Code
+                        </a>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </Link>
             ))}
           </div>
           <div className="text-center mt-12">

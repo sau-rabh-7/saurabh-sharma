@@ -114,33 +114,37 @@ const Navigation = () => {
       </GlassSurface>
 
       {/* Mobile Navigation */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden">
-          <GlassSurface
-            width="100%"
-            height="auto"
-            borderRadius={0}
-            className="border-b border-border/20" 
-          >
-            <div className="px-2 pt-2 pb-3 space-y-1 w-full">
-              {navItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`nav-link block text-base font-medium w-full text-left transition-all duration-200 ${
-                    isActivePage(item.href) 
-                      ? 'text-primary bg-primary/10 shadow-lg shadow-primary/20 border border-primary/20' 
-                      : 'hover:text-accent hover:bg-accent/10 hover:shadow-lg hover:shadow-accent/20 hover:border hover:border-accent/20'
-                  }`}
-                >
-                  {item.label}
-                </a>
-              ))}
-            </div>
-          </GlassSurface>
-        </div>
-      )}
+      <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+        isMobileMenuOpen 
+          ? 'max-h-96 opacity-100' 
+          : 'max-h-0 opacity-0'
+      }`}>
+        <GlassSurface
+          width="100%"
+          height="auto"
+          borderRadius={0}
+          className="border-b border-border/20" 
+        >
+          <div className={`px-2 pt-2 pb-3 space-y-1 w-full transform transition-transform duration-300 ease-in-out ${
+            isMobileMenuOpen ? 'translate-y-0' : '-translate-y-4'
+          }`}>
+            {navItems.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`nav-link block text-base font-medium w-full text-left transition-all duration-200 ${
+                  isActivePage(item.href) 
+                    ? 'text-primary bg-primary/10 shadow-lg shadow-primary/20 border border-primary/20' 
+                    : 'hover:text-accent hover:bg-accent/10 hover:shadow-lg hover:shadow-accent/20 hover:border hover:border-accent/20'
+                }`}
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+        </GlassSurface>
+      </div>
     </nav>
   );
 };
