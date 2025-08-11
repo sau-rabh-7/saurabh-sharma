@@ -50,12 +50,12 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50">
+    <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50">
       <GlassSurface
-        width="100%"
-        height={64}
-        borderRadius={0}
-        className="border-b border-border/20"
+        width="auto"
+        height={56}
+        borderRadius={28}
+        className="border border-border/30 shadow-lg shadow-black/10"
         displace={0.5}
         distortionScale={-150}
         redOffset={5}
@@ -65,47 +65,54 @@ const Navigation = () => {
         opacity={0.9}
         mixBlendMode="screen"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo */}
-            <div className="flex-shrink-0">
-              <h1 className="text-xl font-bold bg-gradient-to-r bg-clip-text text-transparent from-fuchsia-500 to-indigo-500 to-indigo-500 animate-text">
-                Saurabh Sharma
-              </h1>
+        <div className="px-6 sm:px-8 w-full max-w-4xl">
+          <div className="flex items-center justify-between h-14">
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-1">
+              {navItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className={`nav-link transition-all duration-200 ease-out px-4 py-2 rounded-full text-sm font-medium ${
+                    isActivePage(item.href) 
+                      ? 'text-primary bg-primary/10 shadow-lg shadow-primary/20 border border-primary/20' 
+                      : 'hover:text-accent hover:bg-accent/10 hover:shadow-lg hover:shadow-accent/20 hover:border hover:border-accent/20'
+                  }`}
+                >
+                  {item.label}
+                </a>
+              ))}
             </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4">
-                {navItems.map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    className={`nav-link transition-all duration-200 ease-out ${
-                      isActivePage(item.href) 
-                        ? 'text-primary bg-primary/10 shadow-lg shadow-primary/20 border border-primary/20' 
-                        : 'hover:text-accent hover:bg-accent/10 hover:shadow-lg hover:shadow-accent/20 hover:border hover:border-accent/20'
-                    }`}
-                  >
-                    {item.label}
-                  </a>
-                ))}
-              </div>
+            {/* Mobile Navigation Items */}
+            <div className="flex md:hidden items-center space-x-1">
+              {navItems.slice(0, 3).map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className={`nav-link transition-all duration-200 ease-out px-3 py-2 rounded-full text-xs font-medium ${
+                    isActivePage(item.href) 
+                      ? 'text-primary bg-primary/10 shadow-lg shadow-primary/20 border border-primary/20' 
+                      : 'hover:text-accent hover:bg-accent/10 hover:shadow-lg hover:shadow-accent/20 hover:border hover:border-accent/20'
+                  }`}
+                >
+                  {item.label}
+                </a>
+              ))}
             </div>
 
             {/* Theme Toggle & Mobile Menu */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-3">
               <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
 
               {/* Mobile menu button */}
               <div className="md:hidden">
                 <Button
                   variant="ghost"
-                  //size="icon"
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                  className="h-10 w-10 rounded-full hover:bg-accent/10 hover:shadow-lg hover:shadow-accent/20 transition-all duration-200"
+                  className="h-8 w-8 rounded-full hover:bg-accent/10 hover:shadow-lg hover:shadow-accent/20 transition-all duration-200 p-0"
                 >
-                  {isMobileMenuOpen ? <X className="scale-[1.6]" /> : <Menu className="scale-[1.6]" />}
+                  {isMobileMenuOpen ? <X className="scale-[1.2]" /> : <Menu className="scale-[1.2]" />}
                 </Button>
               </div>
             </div>
@@ -113,27 +120,35 @@ const Navigation = () => {
         </div>
       </GlassSurface>
 
-      {/* Mobile Navigation */}
-      <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+      {/* Mobile Navigation Dropdown */}
+      <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out mt-2 ${
         isMobileMenuOpen 
           ? 'max-h-96 opacity-100' 
           : 'max-h-0 opacity-0'
       }`}>
         <GlassSurface
-          width="100%"
+          width="auto"
           height="auto"
-          borderRadius={0}
-          className="border-b border-border/20" 
+          borderRadius={16}
+          className="border border-border/30 shadow-lg shadow-black/10"
+          displace={0.5}
+          distortionScale={-150}
+          redOffset={5}
+          greenOffset={15}
+          blueOffset={25}
+          brightness={60}
+          opacity={0.9}
+          mixBlendMode="screen"
         >
-          <div className={`px-2 pt-2 pb-3 space-y-1 w-full transform transition-transform duration-300 ease-in-out ${
+          <div className={`p-3 space-y-1 w-full min-w-[200px] transform transition-transform duration-300 ease-in-out ${
             isMobileMenuOpen ? 'translate-y-0' : '-translate-y-4'
           }`}>
-            {navItems.map((item) => (
+            {navItems.slice(3).map((item) => (
               <a
                 key={item.label}
                 href={item.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`nav-link block text-base font-medium w-full text-left transition-all duration-200 ${
+                className={`nav-link block text-sm font-medium w-full text-left px-3 py-2 rounded-lg transition-all duration-200 ${
                   isActivePage(item.href) 
                     ? 'text-primary bg-primary/10 shadow-lg shadow-primary/20 border border-primary/20' 
                     : 'hover:text-accent hover:bg-accent/10 hover:shadow-lg hover:shadow-accent/20 hover:border hover:border-accent/20'
@@ -149,14 +164,12 @@ const Navigation = () => {
   );
 };
 
-// It's good practice to have the ThemeToggle as a separate component.
-// You can move this to "@/components/ui/ThemeToggle.tsx"
+// Theme Toggle Component
 const ThemeToggle = ({ isDark, onToggle }: { isDark: boolean, onToggle: () => void }) => {
   return (
     <label className="switch">
       <input 
         type="checkbox" 
-        // The 'checked' state now represents LIGHT mode, so we invert the 'isDark' boolean.
         checked={!isDark}
         onChange={onToggle}
       />
