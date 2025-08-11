@@ -143,13 +143,13 @@ const Home = () => {
           {/* --- Introduction Section --- */}
           {/* Order 2 on mobile, Order 2 on desktop (right side) */}
           <div className="space-y-8 animate-fade-in animation-delay-600 order-2 lg:order-2">
-            <div className="space-y-6">
+            <div className="space-y-6 text-center lg:text-left">
               <h2 className="text-4xl lg:text-5xl font-bold text-foreground leading-tight text-center lg:text-left">
                 Building the <span className="text-5xl font-semibold bg-gradient-to-r bg-clip-text text-transparent from-fuchsia-500 to-indigo-700 to-indigo-300 animate-text">Future</span> with Code
               </h2>
-              <div className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
+              <div className="hidden md:block text-xl text-muted-foreground max-w-2xl leading-relaxed">
                 <div>
-                  <DecryptedText text="I'm a passionate developer who loves creating scalable web " animateOn="view" speed={50} maxIterations={10} className="text-muted-foreground" encryptedClassName="text-accent" />
+                  <DecryptedText text="I'm a passionate developer who loves creating scalable web" animateOn="view" speed={50} maxIterations={10} className="text-muted-foreground" encryptedClassName="text-accent" />
                 </div>
                 <div>
                   <DecryptedText text="applications and exploring cutting-edge technologies. With" animateOn="view" speed={50} maxIterations={10} className="text-muted-foreground" encryptedClassName="text-accent" />
@@ -159,6 +159,27 @@ const Home = () => {
                 </div>
                 <div>
                   <DecryptedText text="elegant solutions." animateOn="view" speed={50} maxIterations={10} className="text-muted-foreground" encryptedClassName="text-accent" />
+                </div>
+              </div>
+
+              <div className="block md:hidden text-xl text-muted-foreground max-w-2xl leading-relaxed">
+                <div>
+                  <DecryptedText text="I'm a passionate developer who loves" animateOn="view" speed={50} maxIterations={10} className="text-muted-foreground" encryptedClassName="text-accent" />
+                </div>
+                <div>
+                  <DecryptedText text="creating scalable web applications and" animateOn="view" speed={50} maxIterations={10} className="text-muted-foreground" encryptedClassName="text-accent" />
+                </div>
+                <div>
+                  <DecryptedText text="exploring cutting-edge technologies." animateOn="view" speed={50} maxIterations={10} className="text-muted-foreground" encryptedClassName="text-accent" />
+                </div>
+                <div>
+                  <DecryptedText text="With expertise in modern tech stacks, I" animateOn="view" speed={50} maxIterations={10} className="text-muted-foreground" encryptedClassName="text-accent" />
+                </div>
+                <div>
+                  <DecryptedText text="turn complex problems into elegant" animateOn="view" speed={50} maxIterations={10} className="text-muted-foreground" encryptedClassName="text-accent" />
+                </div>
+                <div>
+                  <DecryptedText text="solutions." animateOn="view" speed={50} maxIterations={10} className="text-muted-foreground" encryptedClassName="text-accent" />
                 </div>
               </div>
             </div>
@@ -187,11 +208,11 @@ const Home = () => {
       <section className="py-20 px-4 bg-muted/30">
         <div className="max-w-8xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-10 items-center">
-          <div className="relative flex justify-center items-center">
+          <div className="relative flex justify-center items-center overflow-hidden">
             
             {/* 2. Carousel is smaller and centered in the wrapper */}
             <div 
-              className="relative w-full max-w-lg aspect-video touch-pan-x"
+              className="relative w-5/6 max-w-lg aspect-video touch-pan-x"
               onTouchStart={(e) => {
                 const touchStartX = e.touches[0].clientX;
                 e.currentTarget.dataset.touchStartX = touchStartX.toString();
