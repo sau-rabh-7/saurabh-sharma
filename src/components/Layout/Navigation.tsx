@@ -57,7 +57,7 @@ const Navigation = () => {
         borderRadius={28}
         className="border border-border/30 shadow-lg shadow-black/10"
         displace={0.5}
-        distortionScale={-150}
+        distortionScale={-100}
         redOffset={5}
         greenOffset={15}
         blueOffset={25}
@@ -112,7 +112,7 @@ const Navigation = () => {
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                   className="h-8 w-8 rounded-full hover:bg-accent/10 hover:shadow-lg hover:shadow-accent/20 transition-all duration-200 p-0"
                 >
-                  {isMobileMenuOpen ? <X className="scale-[1.2]" /> : <Menu className="scale-[1.2]" />}
+                  {isMobileMenuOpen ? <X className="scale-[1.5]" /> : <Menu className="scale-[1.5]" />}
                 </Button>
               </div>
             </div>
