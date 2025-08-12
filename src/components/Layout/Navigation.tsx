@@ -95,6 +95,13 @@ const Navigation = () => {
           height={64}
           borderRadius={0}
           className="border-b border-border/20"
+          displace={0.5}
+          distortionScale={-100}
+          redOffset={5}
+          greenOffset={15}
+          blueOffset={25}
+          brightness={60}
+          opacity={0.9}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div className="flex items-center justify-between h-16">
@@ -124,6 +131,13 @@ const Navigation = () => {
               height="auto"
               borderRadius={28}
               className="shadow-xl"
+              displace={0.5}
+            distortionScale={-100}
+            redOffset={5}
+            greenOffset={15}
+            blueOffset={25}
+            brightness={60}
+            opacity={0.9}
             >
               <div className="p-2 space-y-1">
                 {navItems.map((item) => (

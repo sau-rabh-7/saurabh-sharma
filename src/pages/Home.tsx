@@ -129,8 +129,8 @@ const Home = () => {
 
             <div className="flex flex-wrap justify-center gap-4">
               {contactLinks.map((link, index) => (
-                <Button key={link.label} variant="outline" asChild className="w-30 group glass-card hover-lift animation-delay-200 shadow-lg hover:shadow-xl" style={{ animationDelay: `${index * 100}ms` }}>
-                  <a href={link.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                <Button key={link.label} variant="outline" asChild className="w-32 group glass-card hover-lift animation-delay-200 shadow-lg hover:shadow-xl" style={{ animationDelay: `${index * 100}ms` }}>
+                  <a href={link.href} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
                     {link.icon}
                     {link.label}
                     <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-smooth" />
