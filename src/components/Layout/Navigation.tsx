@@ -13,12 +13,10 @@ const Navigation = () => {
     { label: "Experience", href: "/experience" },
     { label: "Papers", href: "/papers" },
     { label: "Certifications", href: "/certifications" },
-    // { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/contact" },
   ];
 
   useEffect(() => {
-    // Set initial theme based on localStorage or system preference
     const savedTheme = localStorage.getItem("theme");
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
@@ -50,89 +48,16 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50">
+    <>
+      {/* --- Desktop Navigation (Pill Shaped) --- */}
+      <nav className="hidden md:flex justify-center fixed top-4 left-0 right-0 z-50">
       <GlassSurface
-        width="auto"
-        height={56}
-        borderRadius={28}
-        className="border border-border/30 shadow-lg shadow-black/10"
-        displace={0.5}
-        distortionScale={-100}
-        redOffset={5}
-        greenOffset={15}
-        blueOffset={25}
-        brightness={60}
-        opacity={0.9}
-        mixBlendMode="screen"
-      >
-        <div className="px-6 sm:px-8 w-full max-w-4xl">
-          <div className="flex items-center justify-between h-14">
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-1">
-              {navItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className={`nav-link transition-all duration-200 ease-out px-4 py-2 rounded-full text-sm font-medium ${
-                    isActivePage(item.href) 
-                      ? 'text-primary bg-primary/10 shadow-lg shadow-primary/20 border border-primary/20' 
-                      : 'hover:text-accent hover:bg-accent/10 hover:shadow-lg hover:shadow-accent/20 hover:border hover:border-accent/20'
-                  }`}
-                >
-                  {item.label}
-                </a>
-              ))}
-            </div>
-
-            {/* Mobile Navigation Items */}
-            <div className="flex md:hidden items-center space-x-1">
-              {navItems.slice(0, 3).map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className={`nav-link transition-all duration-200 ease-out px-3 py-2 rounded-full text-xs font-medium ${
-                    isActivePage(item.href) 
-                      ? 'text-primary bg-primary/10 shadow-lg shadow-primary/20 border border-primary/20' 
-                      : 'hover:text-accent hover:bg-accent/10 hover:shadow-lg hover:shadow-accent/20 hover:border hover:border-accent/20'
-                  }`}
-                >
-                  {item.label}
-                </a>
-              ))}
-            </div>
-
-            {/* Theme Toggle & Mobile Menu */}
-            <div className="flex items-center space-x-3">
-              <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
-
-              {/* Mobile menu button */}
-              <div className="md:hidden">
-                <Button
-                  variant="ghost"
-                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                  className="h-8 w-8 rounded-full hover:bg-accent/10 hover:shadow-lg hover:shadow-accent/20 transition-all duration-200 p-0"
-                >
-                  {isMobileMenuOpen ? <X className="scale-[1.5]" /> : <Menu className="scale-[1.5]" />}
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </GlassSurface>
-
-      {/* Mobile Navigation Dropdown */}
-      <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out mt-2 ${
-        isMobileMenuOpen 
-          ? 'max-h-96 opacity-100' 
-          : 'max-h-0 opacity-0'
-      }`}>
-        <GlassSurface
           width="auto"
-          height="auto"
-          borderRadius={16}
+          height={56}
+          borderRadius={28}
           className="border border-border/30 shadow-lg shadow-black/10"
           displace={0.5}
-          distortionScale={-150}
+          distortionScale={-100}
           redOffset={5}
           greenOffset={15}
           blueOffset={25}
@@ -140,31 +65,91 @@ const Navigation = () => {
           opacity={0.9}
           mixBlendMode="screen"
         >
-          <div className={`p-3 space-y-1 w-full min-w-[200px] transform transition-transform duration-300 ease-in-out ${
-            isMobileMenuOpen ? 'translate-y-0' : '-translate-y-4'
-          }`}>
-            {navItems.slice(3).map((item) => (
-              <a
+          <div className="flex items-center h-16 px-6">
+            <div className="flex items-baseline space-x-1">
+              {navItems.map((item) => (
+                <a
                 key={item.label}
                 href={item.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className={`nav-link block text-sm font-medium w-full text-left px-3 py-2 rounded-lg transition-all duration-200 ${
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ease-out border ${
                   isActivePage(item.href) 
-                    ? 'text-primary bg-primary/10 shadow-lg shadow-primary/20 border border-primary/20' 
-                    : 'hover:text-accent hover:bg-accent/10 hover:shadow-lg hover:shadow-accent/20 hover:border hover:border-accent/20'
+                    ? 'text-primary bg-primary/15 shadow-md shadow-primary/25 border-primary/30' 
+                    : 'hover:text-accent hover:bg-accent/10 hover:shadow-md hover:shadow-accent/25 hover:border-accent/30 border-transparent'
                 }`}
               >
                 {item.label}
               </a>
-            ))}
+              ))}
+            </div>
+            <div className="ml-6">
+              <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
+            </div>
           </div>
         </GlassSurface>
-      </div>
-    </nav>
+      </nav>
+
+      {/* --- Mobile Navigation (Full Width) --- */}
+      <nav className="md:hidden fixed top-0 left-0 right-0 z-50">
+        <GlassSurface
+          width="100%"
+          height={64}
+          borderRadius={0}
+          className="border-b border-border/20"
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div className="flex items-center justify-between h-16">
+              <div className="flex-shrink-0">
+                <h1 className="text-xl font-bold bg-gradient-to-r bg-clip-text text-transparent from-fuchsia-500 to-indigo-500 animate-text">
+                  Saurabh Sharma
+                </h1>
+              </div>
+              <div className="flex items-center space-x-3">
+                <ThemeToggle isDark={isDark} onToggle={toggleTheme}/>
+                <Button
+                  variant="ghost"
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                  className="h-10 w-10 rounded-full"
+                >
+                  {isMobileMenuOpen ? <X className="scale-[1.6]" /> : <Menu className="scale-[1.6]" />}
+                </Button>
+              </div>
+            </div>
+          </div>
+        </GlassSurface>
+        
+        <div className={`transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
+          <div className={`flex justify-center p-2 transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-y-0' : '-translate-y-4'}`}>
+            <GlassSurface
+              width="auto"
+              height="auto"
+              borderRadius={28}
+              className="shadow-xl"
+            >
+              <div className="p-2 space-y-1">
+                {navItems.map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`nav-link block text-base font-medium text-center px-8 py-2 rounded-full ${
+                      isActivePage(item.href) 
+                        ? 'text-primary bg-primary/10' 
+                        : 'hover:text-accent hover:bg-accent/10'
+                    }`}
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+            </GlassSurface>
+          </div>
+        </div>
+      </nav>
+    </>
   );
 };
 
-// Theme Toggle Component
+
 const ThemeToggle = ({ isDark, onToggle }: { isDark: boolean, onToggle: () => void }) => {
   return (
     <label className="switch">

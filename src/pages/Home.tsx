@@ -162,7 +162,7 @@ const Home = () => {
                 </div>
               </div>
 
-              <div className="block md:hidden text-xl text-muted-foreground max-w-2xl leading-relaxed">
+              <div className="block md:hidden text-lg text-muted-foreground max-w-2xl leading-relaxed">
                 <div>
                   <DecryptedText text="I'm a passionate developer who loves" animateOn="view" speed={50} maxIterations={10} className="text-muted-foreground" encryptedClassName="text-accent" />
                 </div>
