@@ -200,7 +200,7 @@ const Contact = () => {
           {/* Social Links - Horizontal */}
           <section className="mt-12 glass-card p-6 rounded-xl">
             <h3 className="text-xl font-bold text-foreground mb-6 text-center">Connect</h3>
-            <div className="flex justify-center gap-6">
+            <div className="grid justify-center gap-6 grid-cols-3">
               {socialLinks.map((social) => (
                 <a
                   key={social.platform}
@@ -214,7 +214,7 @@ const Contact = () => {
                   </div>
                   <div className="text-center">
                     <p className="font-medium text-foreground text-sm">{social.platform}</p>
-                    <p className="text-xs text-muted-foreground">{social.username}</p>
+                    <p className="text-xs text-muted-foreground break-all">{social.username}</p>
                   </div>
                 </a>
               ))}
