@@ -102,6 +102,13 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
+      <svg width="0" height="0" className="absolute">
+        <defs>
+          <clipPath id="SquircleClip-3" clipPathUnits="objectBoundingBox">
+            <path d="M 0,0.5 C 0,0.115 0.115,0 0.5,0 0.885,0 1,0.115 1,0.5 1,0.885 0.885,1 0.5,1 0.115,1 0,0.885 0,0.5"></path>
+          </clipPath>
+        </defs>
+      </svg>
       <Navigation />
       
       <section className="min-h-screen flex items-center justify-center px-4 pt-24 pb-16 lg:pt-0 lg:pb-0 relative overflow-hidden">
@@ -111,15 +118,15 @@ const Home = () => {
           {/* --- Profile Info Section --- */}
           {/* Order 1 on mobile, Order 1 on desktop (left side) */}
           <div className="space-y-8 animate-fade-in text-center order-1 lg:order-1">
-            <div className="relative mx-auto w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 group">
-              <div className="absolute inset-0 bg-gradient-to-tr from-fuchsia-500 to-neutral-500 rounded-full blur-3xl opacity-60 transition-all duration-100"></div>
-              <div className="relative w-full h-full rounded-full overflow-hidden bg-white/20 backdrop-blur-lg shadow-2xl transition-all duration-500 hover:rounded-3xl hover:shadow-2xl">
+          <div className="relative mx-auto w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 group">
+              <div className="absolute inset-0 bg-gradient-to-tr from-primary/60 to-neutral-500 rounded-full blur-3xl opacity-60 transition-all duration-300"></div>
+              <div className="relative w-full h-full squircle-clip overflow-hidden backdrop-blur-lg shadow-2xl transition-all duration-300 ease-in-out">
                 <img src="images/bw-pfp.jpg" alt="Profile" className="w-full h-full object-cover" />
               </div>
             </div>
 
             <div className="text-center">
-              <h1 className="text-4xl sm:text-5xl font-semibold bg-gradient-to-r bg-clip-text text-transparent from-fuchsia-500 to-indigo-700 to-indigo-500 animate-text">
+              <h1 className="text-4xl sm:text-5xl font-semibold bg-gradient-to-r bg-clip-text text-transparent from-fuchsia-500 to-indigo-700 animate-text">
                 Saurabh Sharma
               </h1>
               <p className="text-lg sm:text-xl text-muted-foreground">
@@ -145,7 +152,7 @@ const Home = () => {
           <div className="space-y-8 animate-fade-in animation-delay-600 order-2 lg:order-2">
             <div className="space-y-6 text-center lg:text-left">
               <h2 className="text-4xl lg:text-5xl font-bold text-foreground leading-tight text-center lg:text-left">
-                Building the <span className="text-5xl font-semibold bg-gradient-to-r bg-clip-text text-transparent from-fuchsia-500 to-indigo-700 to-indigo-300 animate-text">Future</span> with Code
+                Building the <span className="text-5xl font-semibold bg-gradient-to-r bg-clip-text text-transparent from-fuchsia-500 to-indigo-700 animate-text">Future</span> with Code
               </h2>
               <div className="hidden md:block text-xl text-muted-foreground max-w-2xl leading-relaxed">
                 <div>

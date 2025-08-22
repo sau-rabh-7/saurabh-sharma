@@ -404,3 +404,10 @@ All colors MUST be HSL.
 .group:hover .clip-rounded {
   clip-path: inset(0% round 1.5rem);
 }
+@layer utilities {
+  .squircle-clip {
+    clip-path: url(#SquircleClip-3);
+    /* We also need to remove the border-radius for the clip-path to work perfectly */
+    border-radius: 0 !important;
+  }
+}

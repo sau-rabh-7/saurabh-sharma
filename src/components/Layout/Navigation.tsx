@@ -147,8 +147,8 @@ const Navigation = () => {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={`nav-link block text-base font-medium text-center px-8 py-2 rounded-full ${
                       isActivePage(item.href) 
-                        ?'text-primary bg-primary/30 shadow-md shadow-primary/25 border-primary/30 hover:bg-primary/30' 
-                    :   'hover:text-accent hover:bg-accent/20 hover:shadow-md hover:shadow-accent/25 hover:border-accent/30 border-transparent'
+                        ?'text-primary bg-primary/30 shadow-md shadow-primary/40 border-primary/40 hover:bg-primary/30' 
+                    :   'hover:text-accent hover:bg-accent/20 hover:shadow-md hover:shadow-accent/30 hover:border-accent/30 border-transparent'
                     }`}
                   >
                     {item.label}
