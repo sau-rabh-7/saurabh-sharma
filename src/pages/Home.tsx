@@ -25,7 +25,7 @@ const Home = () => {
 
   const skillCategories = [
     { title: "Languages", skills: ["JavaScript", "TypeScript", "Python", "Java", "C", "C++"] },
-    { title: "Frameworks", skills: ["React", "Next.js", "Express.js", "Django", "Flask", "TensorFlow", "PyTorch", "Bootstrap", "Tailwind"] },
+    { title: "Frameworks & Libraries", skills: ["React", "Node.js", "Express.js", "Django", "Flask", "TensorFlow", "PyTorch", "Bootstrap", "Tailwind"] },
     { title: "Tools", skills: ["AWS", "Docker", "Kubernetes", "Git", "GitHub", "MongoDB", "PostgreSQL", "MySQL"] }
   ];
 

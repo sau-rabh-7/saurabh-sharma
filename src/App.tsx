@@ -4,10 +4,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// 1. Import your new background components
-// import Background from "./components/ui/background";
-// import DarkVeil from "./components/ui/DarkVeil";
-
 // Import your pages
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";

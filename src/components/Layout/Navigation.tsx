@@ -94,12 +94,12 @@ const Navigation = () => {
           width="100%"
           height={64}
           borderRadius={0}
-          className="border-b border-border/20"
-          displace={0.5}
-          distortionScale={-100}
+          className="border-b border-border/10"
+          displace={0.1}
+          distortionScale={-50}
           redOffset={5}
-          greenOffset={15}
-          blueOffset={25}
+          greenOffset={10}
+          blueOffset={15}
           brightness={60}
           opacity={0.9}
         >
@@ -131,15 +131,15 @@ const Navigation = () => {
               height="auto"
               borderRadius={28}
               className="shadow-xl"
-              displace={0.5}
-            distortionScale={-100}
-            redOffset={5}
-            greenOffset={15}
-            blueOffset={25}
-            brightness={60}
-            opacity={0.9}
+              displace={0.1}
+              distortionScale={-50}
+              redOffset={5}
+              greenOffset={10}
+              blueOffset={15}
+              brightness={60}
+              opacity={0.9}
             >
-              <div className="p-2 space-y-1">
+              <div className="p-2 space-y-1 ">
                 {navItems.map((item) => (
                   <a
                     key={item.label}
@@ -147,8 +147,8 @@ const Navigation = () => {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={`nav-link block text-base font-medium text-center px-8 py-2 rounded-full ${
                       isActivePage(item.href) 
-                        ? 'text-primary bg-primary/10' 
-                        : 'hover:text-accent hover:bg-accent/10'
+                        ?'text-primary bg-primary/30 shadow-md shadow-primary/25 border-primary/30 hover:bg-primary/30' 
+                    :   'hover:text-accent hover:bg-accent/20 hover:shadow-md hover:shadow-accent/25 hover:border-accent/30 border-transparent'
                     }`}
                   >
                     {item.label}
