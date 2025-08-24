@@ -20,7 +20,7 @@ const Home = () => {
     { icon: <Github className="w-5 h-5" />, label: "GitHub", href: "https://github.com/sau-rabh-7" },
     { icon: <Linkedin className="w-5 h-5" />, label: "Linkedin", href: "https://linkedin.com/in/saurabhsharma98048" },
     { icon: <Mail className="w-5 h-5" />, label: "Email", href: "mailto:saurabh98048@gmail.com" },
-    { icon: <Download className="w-5 h-5" />, label: "Resume", href: "https://drive.google.com/file/d/1234567890/view" },
+    { icon: <Download className="w-5 h-5" />, label: "Resume", href: "https://drive.google.com/file/d/1IUNn1jatN3FloJrJ9oo8kWiLG6gqtL5n/view?usp=sharing" },
   ];
 
   const skillCategories = [
