@@ -100,8 +100,8 @@ const Navigation = () => {
           redOffset={5}
           greenOffset={10}
           blueOffset={15}
-          brightness={60}
-          opacity={0.9}
+          brightness={20}
+          opacity={0.5}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div className="flex items-center justify-between h-16">
@@ -130,14 +130,14 @@ const Navigation = () => {
               width="auto"
               height="auto"
               borderRadius={28}
-              className="shadow-xl"
+              className="border-b border-border/10 shadow-2xl"
               displace={0.1}
               distortionScale={-50}
               redOffset={5}
               greenOffset={10}
               blueOffset={15}
-              brightness={60}
-              opacity={0.9}
+              brightness={20}
+              opacity={0.5}
             >
               <div className="p-2 space-y-1 ">
                 {navItems.map((item) => (
